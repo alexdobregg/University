@@ -1,0 +1,70 @@
+Dobre Gigi-Alexandru 322CD
+
+Tema1 - Proiectarea Algoritmilor
+
+* Crypto:
+    -for the crypto problem, I made a new class called Proc, which has
+two fields for storing the number of processors each Pc has and the price
+necessary for an upgrade.
+    -the reading complexity is O(N) because of the for from 0 to N - 1.
+    -for the solution of the problem, I created a function called cryptoCoins
+which calculates the number of crypto coins the setup is going to produce per
+hour. First, I used the sort function with a compare function in order
+to have the list of Proc elements sorted in ascending order by their number
+of processors. The main idea is that we will calculate the sum of the
+previous Pcs and see the difference in the number of processors between
+the curent one and the previous. If there is no difference we keep going.
+Then we calculate how many upgrades can we make for the current sum. There
+is no need to upgrade a single pc if we can't upgrade all the previous
+ones. Also, if we can't reach the number of processors the current Pc has,
+we add the count, but if we can, we add until we reach the current number.
+We check to see if our budget is still positive and if we reached the
+end, we add how many processors we can buy with the remaining budget.
+    -the complexity for this problem is O(N log N) because of the sort.
+
+* Stocks:
+    -for the stocks problem, I made a new class called StocksValue, which
+has three fields for storing the currentValue, the minLoss which is
+currentValue - minValue and the maxWin which is maxValue - currentValue.
+    -the reading complexity is O(N) because of the for from 0 to N - 1. I
+only kept the good stocks.
+    -for the solution of the problem, I created a function called
+stocksCalculator, which is an adaptation of the knapsack problem. The only
+difference is the three dimensional array. If any of the indices is 0,
+the value of that position in the array is 0. If the position specific
+to budget and the one to minimum loss are bigger than the current stock's
+values, then we obtain the maximum between the previous position speaking of
+the first dimension, and the sol_aux. If not, then the value of the current
+positon is equal to the value of the previous one. Then we return the solution
+which is dp[number of elements][budget][loss].
+    -the complexity of this solution is O(counter * B * L), where counter
+is the number of stocks after filtering them.
+
+* Valley:
+    -for the valley problem, I used a vector to store the heights of
+the mountains.
+    -the reading complexity is O(N) because of the for from 0 to N - 1.
+    -for the solution of the problem, I created a function called excavate.
+Besides this one, I have findMinIdx which returns the position of the
+lowest value in the heights vector. After that, we form a descending 
+array from right to the index and another descending array from the
+left to the index. For the last and the first min value cases there
+are two separate conditions to deal with them.
+    -the complexity of this solution is O(n) because of the findMinIdx
+function.
+
+* Ridge:
+    -for the ridge problem, I used two vectors to store the heights of
+the mountains and the costs to excavate one unit from each of them.
+    -the reading complexity is O(N) because of the for from 0 to N - 1.
+    -for the solution of the problem, I created a function called excavate,
+which is an adaptation of the of the Minimize the cost to make all the adjacent
+elements distinct in an array. An element might need to be decreased maximum
+twice. In this case, I've used dynamic programming to find the minimum cost,
+having three conditions as I've mentioned in the comments.
+    -the complexity of this solution is O(3 * N) = O(N).
+
+
+
+https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/
+https://www.geeksforgeeks.org/minimize-the-cost-to-make-all-the-adjacent-elements-distinct-in-an-array/

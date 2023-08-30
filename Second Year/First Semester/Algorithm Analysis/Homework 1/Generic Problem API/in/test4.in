@@ -1,0 +1,6 @@
+An important question arises from the above explanation, 
+how to know how many characters to be skipped. To know this, 
+we pre-process pattern and prepare an integer array 
+lps[] that tells us the count of characters to be skipped.
+*
+ow

@@ -1,0 +1,137 @@
+Se considera graful orientat(arc, cost arc):
+
+((1, 2), 3); 
+((1, 3), 4);
+((1, 5), 1);
+((1, 6), 10);
+((1, 7), 3);
+((2, 3), 2);
+((3, 4), 2);
+((3, 6), 2);
+((5, 4), 3);
+((5, 7), 1);
+((6, 4), 2);
+((7, 3), 1);
+((7, 4), 10);
+((7, 5), 2);
+
+Nodul sursa este s = 1;
+
+1. Sa se calculeze de mana fiecare pas din algoritmul Dijkstra (toate informatiile din algoritm) pe graful de mai sus.
+
+Initializare: d[i] = +inf, p[i] = NULL, i de la 1 la 7;
+
+d[s] = 0;
+
+1) Q = {1, 2, 3, 4, 5, 6 ,7} -> este extras nodul 1 (d[1] = 0)
+
+2 ∈ Q, 2 ∈ Succ(1) => d[2] (inf) > d[1] (0) + w(1, 2) (3) A => d[2] = 3; p[2] = 1;
+3 ∈ Q, 3 ∈ Succ(1) => d[3] (inf) > d[1] (0) + w(1, 3) (4) A => d[3] = 4; p[3] = 1;
+4 ∈ Q, 4 !∈ Succ(1);
+5 ∈ Q, 5 ∈ Succ(1) => d[5] (inf) > d[1] (0) + w(1, 5) (1) A => d[5] = 1; p[5] = 1;
+6 ∈ Q, 6 ∈ Succ(1) => d[6] (inf) > d[1] (0) + w(1, 6) (10) A => d[6] = 10; p[6] = 1;
+7 ∈ Q, 7 ∈ Succ(1) => d[7] (inf) > d[1] (0) + w(1, 7) (3) A => d[7] = 3; p[7] = 1;
+
+2) Q = {2, 3, 4, 5, 6, 7} -> este extras nodul 5 (d[5] = 1)
+
+2 ∈ Q, 2 !∈ Succ(5);
+3 ∈ Q, 3 !∈ Succ(5);
+4 ∈ Q, 4 ∈ Succ(5) => d[4] (inf) > d[5] (1) + w(5, 4) (3) A => d[4] = 4; p[4] = 5;
+6 ∈ Q, 6 !∈ Succ(5);
+7 ∈ Q, 7 ∈ Succ(5) => d[7] (3) > d[5] (1) + w(5, 7) (1) A => d[7] = 2; p[7] = 5;
+
+3) Q = {2, 3, 4, 6, 7} -> este extras nodul 7 (d[7] = 2)
+
+2 ∈ Q, 2 !∈ Succ(7);
+3 ∈ Q, 3 ∈ Succ(7) => d[3] (4) > d[7] (2) + w(7, 3) (1) A => d[3] = 3; p[3] = 7;
+4 ∈ Q, 4 ∈ Succ(7) => d[4] (4) > d[7] (2) + w(7, 4) (10) F;
+6 ∈ Q, 6 !∈ Succ(7);
+
+4) Q = {2, 3, 4, 6} -> este extras nodul 2 (d[2] = 3)
+
+3 ∈ Q, 3 ∈ Succ(2) => d[3] (3) > d[2] (3) + w(2, 3) (2) F;
+4 ∈ Q, 4 !∈ Succ(2);
+6 ∈ Q, 6 !∈ Succ(2);
+
+5) Q = {3, 4, 6} -> este extras nodul 3 (d[3] = 3)
+
+4 ∈ Q, 4 ∈ Succ(3) => d[4] (4) > d[3] (3) + w(3, 4) (2) F;
+6 ∈ Q, 6 ∈ Succ(3) => d[6] (10) > d[3] (3) + w(3, 6) (2) A => d[6] = 5; p[6] = 3
+
+6) Q = {4, 6} -> este extras nodul 4 (d[4] = 4)
+
+6 ∈ Q, 6 !∈ Succ(4);
+
+7) Q = {6} -> este extras nodul 6 (d[6] = 5)
+
+Q nu mai are elemenete.
+
+Sursa     Destinatie     Cost       Parinte
+1         1              0          NULL
+1         2              3          1
+1         3              3          7
+1         4              4          5
+1         5              1          1
+1         6              5          3
+1         7              2          5
+
+
+2. Sa se calculeze de mana fiecare pas din algoritmul Bellman-Ford (varianta standard, toate informatiile din algoritm) pe graful de mai sus.
+
+Initializare: d[i] = +inf, p[i] = NULL, i de la 1 la 7;
+
+d[s] = 0;
+
+1) i = 1;
+Nodul considerat este cel sursa, adica 1.
+
+d[2] (inf) > d[1] (0) + w(1, 2) (3) A => d[2] = 3; p[2] = 1;
+d[3] (inf) > d[1] (0) + w(1, 3) (4) A => d[3] = 4; p[3] = 1;
+d[5] (inf) > d[1] (0) + w(1, 5) (1) A => d[5] = 1; p[5] = 1;
+d[6] (inf) > d[1] (0) + w(1, 6) (10) A => d[6] = 10; p[6] = 1;
+d[7] (inf) > d[1] (0) + w(1, 7) (3) A => d[7] = 3; p[7] = 1;
+
+
+2) i = 2
+Nodurile considerate sunt 2, 3, 5, 6, 7.
+
+d[3] (4) > d[2] (3) + w(2, 3) (2) F;
+d[4] (inf) > d[3] (4) + w(3, 4) (2) A => d[4] = 6; p[4] = 3;
+d[6] (10) > d[3] (4) + w(3, 6) (2) A => d[6] = 6; p[6] = 3;
+d[4] (6) > d[5] (1) + w(5, 4) (3) A => d[4] = 4; p[4] = 5;
+d[7] (3) > d[5] (1) + w(5, 7) (1) A => d[7] = 2; p[7] = 5;
+d[4] (4) > d[6] (10) + w(6, 4) (2) F;
+d[3] (4) > d[7] (2) + w(7, 3) (1) A => d[3] = 3; p[3] = 7;
+d[4] (4) > d[7] (2) + w(7, 4) (10) F;
+d[5] (1) > d[7] (2) + w(7, 5) (2) F;
+
+3) i = 3
+Nodurile considerate sunt 3, 4, 6, 7.
+
+d[4] (4) > d[3] (3) + w(3, 4) (2) F;
+d[6] (6) > d[3] (3) + w(3, 6) (2) A => d[6] = 5; p[6] = 3;
+4 nu are muchii
+d[4] (4) > d[6] (6) + w(6, 4) (2) F;
+d[3] (3) > d[7] (2) + w(7, 3) (1) F;
+d[4] (4) > d[7] (2) + w(7, 4) (10) F;
+d[5] (1) > d[7] (2) + w(7, 5) (2) F;
+
+4) i = 4
+Nodul considerat este 6.
+
+d[4] (4) > d[6] (5) + w(6, 4) (2) F;
+
+5) i = 5
+Niciun nod considerat.
+
+6) i = 6
+Niciun nod considerat.
+
+Sursa     Destinatie     Cost       Parinte
+1         1              0          NULL
+1         2              3          1
+1         3              3          7
+1         4              4          5
+1         5              1          1
+1         6              5          3
+1         7              2          5

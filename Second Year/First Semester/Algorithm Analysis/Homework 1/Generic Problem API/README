@@ -1,0 +1,39 @@
+Dobre Gigi-Alexandru 322CD
+
+*in: Pentru fisierele de input am folosit urmatorul stil de a le redacta:
+toate randurile care au maxim 80 de caractere vor constitui txt, pana cand
+este intalnit '*' care este un delimitator intre txt si pat. Tot ce urmeaza
+dupa constituie patternul. Primele 2 teste sunt pentru a verifica daca se pot
+apela functiile in cazurile in care avem doar text sau pattern. Al treilea test
+este pentru a observa ce se intampla atunci cand patternul nu se afla in text.
+Totodata, in cazul in care avem texte si un rand se intrerupe, iar continuarea
+propozitiei este pe urmatorul rand, este indicat ca la final de rand sa se puna
+' ' pentru a evita concatenarea fara spatiu dintre cele 2 randuri. Acest lucru
+se aplica si pentru pattern, deoarece si el poate fi constituit din mai multe
+randuri, exemplu intr-unul din teste. Acesti algoritmi pot fi aplicati si pe 
+alte tipuri de caractere in afara de litere. Este de dorit a se evita folosirea
+'*' in cadrul textului deoarece este tratat ca delimitator.
+
+*out: Fisierele de output create in urma rularii testelor si care contin atat
+outputul realizat de KMP, cat si cel realizat de Boyer Moore, precum si timpul
+de executie pentru fiecare test.
+
+*algo.h: Contine semnaturile functiilor.
+
+*algo_test.cpp: Este fisierul sursa in care am deschis fisierele de input si de
+output. Am apelat functiile pentru a obtine rezolvarea. La inceputul fisierului
+se afla un #define NUMBER_OF_TESTS 8. Pentru a adauga mai multe teste, trebuie
+modificata valoarea si apoi introduse in folderul de input.
+
+*kmp.cpp: Contine algoritmul KMP si functia ajutatoare computeLPSArray.
+https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
+
+*boyermoore.cpp: Contine algoritmul BoyerMoore si functia ajutatoare
+badCharHeuristic.
+https://www.geeksforgeeks.org/boyer-moore-algorithm-for-pattern-searching/
+
+*Makefile: Se foloseste make pentru compilare si make run_tests pentru rulare.
+
+Judecand dupa timpul de rulare, care difera in functie de sistemul pe care sunt
+rulati algoritmii si de la o rulare la alta, nu se poate determina care dintre
+cei doi este un algoritm mai bun. Amandoi sunt niste algoritmi eficienti.

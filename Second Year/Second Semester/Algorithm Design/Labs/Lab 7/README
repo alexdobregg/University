@@ -1,0 +1,114 @@
+Se considera graful reprezentat prin vector de adiacenta.
+
+A: B, C, H
+B: D, E, H, I
+C: D
+D: E, J
+E: F, G
+F: G
+G: -
+H: I
+I: A
+J: -
+
+
+1. Sa se calculeze de mana toate informatiile pentru parcurgerea in latime a
+grafului de mai sus. Sa se implementeze in C parcurgerea in latime si sa se
+testeze pe graful de mai sus si pe graful din curs (pentru graful din curs se
+vor considera nodurile de start din curs pentru a parcurge tot graful si ordinea
+de prelucrare a nodurilor va fi cea din curs).
+
+S = A;
+
+1) Q = {A};
+d(A) = 0;
+p(A) = null;
+c(A) = gri;
+
+2) Q = {B, C, H};
+d(B) = d(C) = d(H) = 1;
+p(B) = p(C) = p(H) = A;
+c(C) = c(B) = c(H) = gri; c(A) = negru;
+
+3) Q = {C, H, D, E, I};
+d(D) = d(E) = d(I) = 2;
+p(D) = p(E) = p(I) = B;
+c(D) = c(E) = c(I) = gri; c(B) = negru;
+
+4) Q = {H, D, E, I};
+c(C) = negru;
+
+5) Q = {D, E, I};
+c(H) = negru;
+
+6) Q = {E, I, J};
+d(J) = 3;
+p(J) = D;
+c(J) = gri; c(D) = negru
+
+7) Q = {I, J, F, G};
+d(F) = d(G) = 3;
+p(F) = p(G) = E;
+c(F) = c(G) = gri; c(e) = negru;
+
+8) Q = {J, F, G};
+c(I) = negru;
+
+9) Q = {F, G};
+c(J) = negru;
+
+10) Q = {G}
+c(F) = negru;
+
+11) Q = {}
+c(G) = negru;
+
+
+2. Sa se calculeze de mana toate informatiile pentru parcurgerea in adancime a
+grafului de mai sus. Sa se implementeze in C parcurgerea in adancime si sa se
+testeze pe graful de mai sus si pe  graful din curs (pentru graful din curs se
+va folosi ordinea de prelucrare a nodurilor folosita in curs).
+
+1) c(A) = gri; d(A) = 1; p(A) = null;
+
+2) c(B) = gri; d(B) = 2; p(B) = A;
+
+3) c(D) = gri; d(D) = 3; p(D) = B;
+
+4) c(E) = gri; d(E) = 4; p(E) = D;
+
+5) c(F) = gri; d(F) = 5; p(F) = E;
+
+6) c(G) = gri; d(G) = 6; p(G) = F;
+
+7) c(G) = negru; f(G) = 7;
+
+8) c(F) = negru; f(F) = 8;
+
+9) c(E) = negru; f(E) = 9;
+
+10) c(J) = gri; d(J) = 10; p(J) = D;
+
+11) c(J) = negru; f(J) = 11;
+
+12) c(D) = negru; f(D) = 12;
+
+13) c(H) = gri; d(H) = 13; p(H) = B;
+
+14) c(I) = gri; d(I) = 14; p(I) = H;
+
+15) c(I) = negru; f(I) = 15;
+
+16) c(H) = negru; f(H) = 16;
+
+17) c(B) = negru; f(B) = 17;
+
+18) c(C) = gri; d(C) = 18; p(C) = A;
+
+19) c(C) = negru; f(C) = 19;
+
+20) c(A) = negru; f(A) = 20;
+
+
+
+Lista: A(1, 20), B(2, 17), C(18, 19), D(3, 12), E(4, 9), F(5, 8), G(6, 7), H(13, 16), I(14, 15), J(10, 11)

@@ -1,0 +1,30 @@
+Dobre Gigi-Alexandru 322CD
+
+    Ca functii externe am folosit malloc, strdup si strtok.
+
+-whatOP: o functie care verifica daca sirul primit ca parametru este
+un operand sau un operator. Intai verifica cat de lung este sirul. Daca are 
+lungimea mai mare de 1, e numar, daca nu, poate lua valorile +, -, *, / si
+0-9. Daca e un operator, va returna 0, daca este operand, 1.
+
+-create_myNode: o functie care creeaza un nod. Este alocata memorie pentru
+data folosit strdup, dupa care este alocata memorie si pentru nod si populate
+campurile. [eax] cu data, [eax + 4] cu 0, [eax + 8] cu 0
+
+-iocla_atoi: o functie care transforma stringurile in int-uri, si anume
+frunzele arborelui. Daca este negativ, va fi transformat prin aceeasi metoda,
+doar ca se scade din registrul in care intoarcem numarul cel in care tinem
+minte o cifra.
+
+-create_tree: o functie care transforma un sir de caractere primit la input
+intr-un arbore sintactic abstract. Intai de toate, am calculat numarul de
+elemente din sir pentru a vedea cu cat trebuie alocat vectorul in care le 
+retinem. Dupa aceea am folosit strtok pentru a imparti sirul in elemente
+in functie de spatiu si le-am stocat in vector. Am parcurs vectorul invers
+si am creat noduri pentru fiecare element in felul urmator: daca era operand,
+era apelata functia create_myNode si mutat pe stiva elementul, daca era
+operator, era apelata functia create_myNode, scoase primele 2 elemente din
+varful stivei si puse pe pozitiile copiilor nodului creat pentru operator,
+dupa care era mutat pe stiva doar nodul acesta. La final pe stiva singurul
+lucru important pentru algoritm era radacina, pentru care dadeam pop eax,
+registr in care se salva rezultatul returnat de functie.

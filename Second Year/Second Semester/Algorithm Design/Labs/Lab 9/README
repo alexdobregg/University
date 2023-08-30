@@ -1,0 +1,90 @@
+Graf -> Curs + (2, 4); (2, 7)
+             - (3, 7); (0, 8)
+
+
+1. Puncte de articulatie
+
+0) Nod: 0 -> low[0] = 0; d[0] = 0; c(0) = gri
+
+1) Nod: 1 -> low[1] = 1; d[1] = 1; c(1) = gri
+
+2) Nod: 2 -> low[2] = 2; d[2] = 2; c(2) = gri
+
+3) Nod: 3 -> low[3] = 3; d[3] = 3; c(3) = gri
+
+4) Nod: 4 -> low[4] = 4; d[4] = 4; c(4) = gri
+    -> Reactualizare: low[4] = 2; c(4) = negru
+    -> Reactualizare: low[3] = 2
+
+5) Nod: 5 -> low[5] = 5; d[5] = 5; c(5) = gri
+
+6) Nod: 6 -> low[6] = 6; d[6] = 6; c(6) = gri -> c(6) = negru
+    -> Reactualizare low[5] = 5
+    low[6] = 6 >= d[5] = 5
+            5 este punct de articulatie; c(5) = negru
+    -> Reactualizare: low[3] = 2
+    low[5] = 5 >= d[3] = 3
+            3 este punct de articulatie; c(3) = negru
+    -> Reactualizare: low[2] = 2
+    low[3] = 2 >= d[2] = 2
+            2 este punct de articulatie
+
+7) Nod: 7 -> low[7] = 7; d[7] = 7; c(7) =gri
+
+8) Nod: 8 -> low[8] = 8; d[8] = 8; c(8) = gri
+    -> Reactualizare low[8] = 1 -> c(8) = negru
+    -> Reactualizare low[7] = 1 -> c(7) = negru
+    -> Reactualizare low[2] = 1 -> c(2) = negru
+    -> Reactualizare low[1] = 1
+    low[2] = 1 >= d[1] = 1
+            1 este punct de articulatie -> c(1) = negru
+
+9) Nod: 9 -> low[9] = 9 d[9] = 9; c(9) = gri -> c(9) = negru
+    -> Reactualizare low[0] = 0
+    subarb[0] = 2 > 1
+        0 este punct de articulatie -> c(0) = negru
+
+Sunt 5 puncte de articulatie: 0, 1, 2, 3, 5.
+
+
+2. Punti
+
+0) Nod: 0 -> low[0] = 0; d[0] = 0; c(0) = gri
+
+1) Nod: 1 -> low[1] = 1; d[1] = 1; c(1) = gri
+
+2) Nod: 2 -> low[2] = 2; d[2] = 2; c(2) = gri
+
+3) Nod: 3 -> low[3] = 3; d[3] = 3; c(3) = gri
+
+4) Nod: 4 -> low[4] = 4; d[4] = 4; c(4) = gri
+    -> Reactualizare: low[4] = 2; c(4) = negru
+    -> Reactualizare: low[3] = 2
+
+5) Nod: 5 -> low[5] = 5; d[5] = 5; c(5) = gri
+
+6) Nod: 6 -> low[6] = 6; d[6] = 6; c(6) = gri -> c(6) = negru
+    -> Reactualizare low[5] = 5
+    low[6] = 6 > d[5] = 5
+            Punte intre 6 si 5; c(5) = negru
+    -> Reactualizare: low[3] = 2
+    low[5] = 5 > d[3] = 3
+            Punte intre 5 si 3; c(3) = negru
+    -> Reactualizare: low[2] = 2
+
+7) Nod: 7 -> low[7] = 7; d[7] = 7; c(7) =gri
+
+8) Nod: 8 -> low[8] = 8; d[8] = 8; c(8) = gri
+    -> Reactualizare low[8] = 1 -> c(8) = negru
+    -> Reactualizare low[7] = 1 -> c(7) = negru
+    -> Reactualizare low[2] = 1 -> c(2) = negru
+    -> Reactualizare low[1] = 1
+    low[2] = 1 >= d[0] = 0
+            Punte intre 1 si 0 -> c(1) = negru
+
+9) Nod: 9 -> low[9] = 9 d[9] = 9; c(9) = gri -> c(9) = negru
+    -> Reactualizare low[0] = 0
+    low[9] = 9 > d[0] = 0 
+        Punte intre 0 si 9 -> c(0) = negru
+
+Puntile sunt: 6 - 5, 5 - 3, 1 - 0, 9 - 0

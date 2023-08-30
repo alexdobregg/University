@@ -1,0 +1,55 @@
+Dobre Gigi-Alexandru 322CD
+
+Tema 4 - Exploit ELFs
+
+Task1
+    0x804930c este adresa la care se gaseste functia vulnerabila. Am observat
+acest lucru deoarece dupa terminarea executarii acesteia, este afisat mesajul
+All done! Bye-bye. Totodata, in aceasta functie se poate observa, cu ajutorul
+utilitarului Ghidra, ca memoria alocata este de 134, iar ce este citit are
+dimensiunea 0x92 = 146.
+
+Task2
+    NICE_FLAG{fa50e4cf2ea738c52e0ee3e90e303347}
+    python -c 'print "A" * 295 + "\x91\x92\x04\x08"' > nice_payload
+    
+    Am obtinut acest flag dupa ce am generat payload-ul nice_payload. Va trebui
+ca in registrul eax sa avem adresa de inceput a functiei print_flag, 0x08049291.
+    Acest payload a fost generat in urmatorul fel: am observat ca functia
+vulnerabila este a 3 a la numar, ceea ce inseamna ca aici ar trebui sa existe o
+schimbare, care este legata de acea dimennsiune precizata anterior. Avand in
+vedere ca primele doua functii au un comportament normal, trebuie sa punem
+caractere pentru functiile read din acestea. Amandoua contin functia read care
+primeste 3 parametri, primul dintre acestia, in ordinea push-urilor, fiind
+memoria citita. Asadar, adunam 0x62 (98) si 0x37 (55), rezultand 153 caractere.
+    Pentru o intelegere mai amanuntita a programului, am folosit comanda:
+objdump -M intel -d nice | less. Pentru functia vulnerabila, se poate observa
+ca avem mov edx, esp, iar valoarea care se afla la esp este de 0x86 (134),
+de altfel si memoria alocata in aceasta functie, pe care o adunam la 153 si
+obtinem 287 caractere. In continuare, pentru a obtine 295, trebuie adunat si
+8 caractere de la mov eax, DWORD PTR [ebp + 0x8], deoarece la adresa ebp + 0x8
+ar trebui sa se afle adresa de inceput a functiei print_flag.
+
+Task3
+    NAUGHTY_FLAG{c9a90d8ed607b7c6e2e0e5c408c52162}
+    python -c 'print "A" * 265 + "\x14\x6f\xd4\x11" +
+                     "A" * 101 + "\x91\x92\x04\x08"' > naughty_payload
+
+    Asemanator primului task, folosind utilitarul Ghidra observam ca functia
+vulnerabila se afla la adresa 0x080492de, care este si prima la numar,
+unde o comparare are loc, care nu este adevarata, drept urmare, programul va
+iesi cu exit code-ul 1 si se va incheia. Flag-ul a fost obtinut dupa ce am
+generat payload-ul naughty_payload. La fel ca in cazul fisierului nice, in eax
+va trebui sa se gaseasca adresa de inceput a functiei print_flag, 0x08049291.
+    Pentru a genera payload-ul, am procedat astfel: in primul rand, trebuie sa
+trecem de acea comparare pentru continuarea programului. Astfel vom adauga
+caractere astfel incat conditia de je sa fie realizata cu succes. Pentru a
+afla numarul acestora, trebuie sa scadem din 0x1d9 (sub esp, 0x1d9) 0xd0
+(cmp DWORD PTR [ebp - 0xd0], 0x11d46f14) ceea ce va avea drept rezultat
+473 - 208 = 265 caractere puse la adresa cu care se face compararea.
+    Luand in calcul faptul ca prima functie este cea vulnerabila, acest lucru
+inseamna ca mai trebuie adaugate caractere doar pentru a obtine flag-ul. Asadar
+din totalul de 473 vom scadea cele 265 folosite, rezultand 208. Mai departe
+scadem 4 pentru adresa si 0x67 (103), obtinand 101, deoarece la adresa ebp-0x67
+ar trebui sa se afle adresa de inceput a functiei print_flag. Pentru a observa
+aceste lucruri am folosit comanda: objdump -M intel -d naughty | less.

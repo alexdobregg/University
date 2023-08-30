@@ -1,0 +1,11 @@
+KMPSearch TEST: 
+
+Found pattern 'I was' at index 3
+Found pattern 'I was' at index 139
+Time taken by KMPSearch: 6 microseconds
+
+BoyerMooreSearch TEST: 
+
+Found pattern 'I was' at index 3
+Found pattern 'I was' at index 139
+Time taken by BoyerMooreSearch: 6 microseconds

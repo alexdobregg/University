@@ -1,0 +1,68 @@
+Object Oriented Programming Course
+Project - First Stage - Energetic System.
+
+December 2020
+
+Dobre Gigi-Alexandru 322CD
+
+* src:
+    * common:
+        * Constants:
+            This is a class containing all the constants i used in my
+            implementation.
+    * input:
+        * ConsumerInput:
+            This is a class whose object contains all the information necessary
+            about a consumer.
+        * Contract:
+            This is a class whose object contains all the information necessary
+            about a contract.
+        * CostsChanges:
+            This is a class whose object contains all the information necessary
+            about the costs changes that occur every month.
+        * DistributorInput:
+            This is a class whose object contains all the information necessary
+            about a distributor
+        * Input:
+            This is a class in whose object the information from the input file
+            is stored.
+        * InputLoader:
+            This is a class that contains a method called readData. It is made for
+            reading the data stored in the input file.
+    * output:
+        * OutputConsumer:
+            This is a class containing the fields that are important about a
+            consumer and must be written in the output file.
+        * OutputDistributor:
+            This is a class containing the fields that are important about a
+            distributor and must be written in the output file.
+        * Writer:
+            This is class that creates an ObjectMapper and writes in the
+            output file.
+    * turns:
+        * Turns:
+            This is an interface that has a method called computeTurns
+        * FirstTurn:
+            This is a class that implements the Turns interface, defining
+            its own implementation for the computeTurns, preparing
+            everything for the next turns, like computing the prices
+            of a distributor, creating contracts, consumers and
+            distributors being paid and paying their costs and contract
+            prices.
+        * OtherTurns:
+            This is a class that implements the Turns interface, defining
+            its own implementation for the computeTurns, only this time,
+            the actions repeat themselves for number of turns times. As
+            well as the other class called FirstTurn, it calculates the
+            prices, makes the changes that occur every month, creates
+            new contracts, removes contracts that are ending or contracts
+            that belong to bankrupt consumers.
+        * TurnsFactory:
+            This is a class that is both Singleton and factory. Only one
+            instance of this class can be created, and it returns, based
+            on what type it receives as an input, one new object of the
+            classes that implements the Turns interface.
+    * Main:
+        This is a class used as an entry point for the program, where new
+        objects are created, methods from these objects are called, where
+        the the fields of the output consumers and distributors are set.

@@ -1,0 +1,47 @@
+Object Oriented Programming Course
+Homework - VideosDB
+
+November 2020
+
+Dobre Gigi-Alexandru 322CD
+
+* src:
+    * commands
+        * Command:
+            All the methods are based on the same idea. They check if the
+            movie/serial has been viewed/added in the favorite list/rated.
+            For rating, in the case of a serial, the seasons are rated. If
+            so, an error message is returned. If not, the actions are
+            performed, only if the movie/serial has been seen. For the view
+            case, there is no error message.
+    * query
+        * Abstract class Sort:
+            I made this abstract class that contains a method which can be
+            applied in every query because they are all based on the same
+            sorting concept. It is inherited by all the query classes.
+        * ActorQuery:
+            There are some methods that come in help when speaking of
+            checking something for an actor, like the awards or the words
+            from the filter description. Then I used the sorting method on
+            the map obtained for every action that was applied for an actor.
+        * MovieQuery:
+            There is a method to check whether any of the queries can be
+            applied on the movie or not when speaking of the year or genres.
+            Then I used the sorting method on the map obtained for every
+            action that was applied for a movie.
+        * SerialQuery
+            It's the same concept as it is for the movies.
+        * UserQuery
+            I used the sorting method on the map obtained after finding out
+            how many ratings a user has given.
+    * recommendations
+        * UserRecommendations:
+            There are methods to check if a user has a premium subscription,
+            to sort a map, to obtain the unseen movies/serials, the genres
+            and the most popular genres based on the unseen movies/serials
+            of the user from the action. The standard and the best unseen are
+            applied for every user. The other three methods are applied only
+            for the premium users. For every action, i obtained a list with
+            the sorted videos, if it was possible. For most of them, the first
+            video in that list is the one we are looking for, and for the
+            search recommendation, it is the whole list.

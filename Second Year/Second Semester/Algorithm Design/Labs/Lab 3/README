@@ -1,0 +1,95 @@
+1. "aabd bc cb" (10 caractere) -> Arbore Huffman
+
+K - multimea simbolurilor => K = {a, b, c, d, " "}
+
+p(k) -> frecveta de aparitie -> nr_aparitii / lungime_text
+
+p(a) = 2 / 10 = 0.2;
+p(b) = 3 / 10 = 0.3;
+p(c) = 2 / 10 = 0.2;
+p(d) = 1 / 10 = 0.1;
+p(" ") = 2 / 10 = 0.2;
+
+Pasul 1: Se construieste un arbore pentru fiecare k din K cu un singur nod si ponderea w = p(k);
+
+w(b)	w(a)	w(" ")	w(c)	w(d)
+0.3		0.2		0.2		0.2 	0.1
+
+Pasii 2-4: Alegem 2 subarbori cu pondere minima si construim un arbore binar cu radacina r, cu descendenti cei 2 subarbori alesi.
+
+
+
+
+							   w(c + d)
+							  	  0.3
+							/           \
+w(b)	w(a)	w(" ")	w(c)			w(d)
+0.3		0.2		0.2		0.2 			0.1
+
+
+
+
+			w(a + " ")		  	  w(c + d)
+			  0.4			  	     0.3
+		  /			\			/           \
+w(b)	w(a)		w(" ")	w(c)			w(d)
+0.3		0.2			0.2		0.2 			0.1
+
+
+
+
+
+
+									  w(c + d + b)	
+										   0.6
+									/			  \
+		w(a + " ")		  	  w(c + d)          w(b)
+		  0.4			  	     0.3			  0.3
+	 /			\			/           \
+	w(a)		w(" ")	w(c)			w(d)
+	0.2			0.2		0.2 			0.1
+
+
+
+
+					w(a + " " + c + d + b)
+							1.0
+				  /						\
+		  w(a + " ")				   w(c + d + b)	
+			0.4							   0.6
+         /			\				/			  \
+	   w(a)		  w(" ")		 w(c + d)          w(b)
+		0.2			0.2			   0.3			   0.3
+							  /           \
+						  w(c)			w(d)
+						  0.2 			0.1
+
+
+Codificare: 00(a) 00(a) 11(b) 101(d) 01(" ") 11(b) 100(c) 01(" ") 100(c) 11(b) -> 23 de biti are lungimea codificarii.
+
+Cost = suma [nivel (k, A) * p(k)] =
+     = 2 * p(a) + 2 * p(b) + 1 * p(c) + 1 * p(d) + 2 * p(" ") = 
+     = 2 * 0.2 + 2 * 0.3 + 3 * 0.2 + 3 * 0.1 + 2 * 0.2 = 
+     = 0.4 + 0.6 + 0.6 + 0.3 + 0.4 =
+     = 2.3
+
+
+
+3. Problema spectacolelor.
+
+s = {10, 11, 12, 14, 16, 17}
+t = {11, 13, 13, 18, 17, 19}
+
+Le ordonam in functie de ora terminarii spectacolului.
+
+(s, t) = {(10, 11); (11, 13); (12, 13); (16, 17); (14, 18); (17, 19)}
+
+Incepem cu primul spectacol si vom avea: Spect = {(10, 11)};
+
+Se termina la ora 11, deci vom merge prin lista de spectacole care au ora de inceput >= ora de sfarist al spectacolului anterior =>
+
+(11, 13) este bun => Spect = {(10, 11); (11, 13)}
+
+Se termina la ora 13, deci (12, 13) nu este bun. Este bun (16, 17) => Spect = {(10, 11); (11, 13); (16, 17)}
+
+Se termina la ora 17, deci (14, 18) nu este bun. Este bun (17, 19) => Spect = {(10, 11); (11, 13); (16, 17); (17, 19)}

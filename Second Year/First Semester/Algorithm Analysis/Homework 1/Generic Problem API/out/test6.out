@@ -1,0 +1,39 @@
+KMPSearch TEST: 
+
+Found pattern 'ATG' at index 115
+Found pattern 'ATG' at index 167
+Found pattern 'ATG' at index 171
+Found pattern 'ATG' at index 186
+Found pattern 'ATG' at index 286
+Found pattern 'ATG' at index 313
+Found pattern 'ATG' at index 332
+Found pattern 'ATG' at index 361
+Found pattern 'ATG' at index 397
+Found pattern 'ATG' at index 419
+Found pattern 'ATG' at index 440
+Found pattern 'ATG' at index 574
+Found pattern 'ATG' at index 631
+Found pattern 'ATG' at index 749
+Found pattern 'ATG' at index 778
+Found pattern 'ATG' at index 790
+Time taken by KMPSearch: 47 microseconds
+
+BoyerMooreSearch TEST: 
+
+Found pattern 'ATG' at index 115
+Found pattern 'ATG' at index 167
+Found pattern 'ATG' at index 171
+Found pattern 'ATG' at index 186
+Found pattern 'ATG' at index 286
+Found pattern 'ATG' at index 313
+Found pattern 'ATG' at index 332
+Found pattern 'ATG' at index 361
+Found pattern 'ATG' at index 397
+Found pattern 'ATG' at index 419
+Found pattern 'ATG' at index 440
+Found pattern 'ATG' at index 574
+Found pattern 'ATG' at index 631
+Found pattern 'ATG' at index 749
+Found pattern 'ATG' at index 778
+Found pattern 'ATG' at index 790
+Time taken by BoyerMooreSearch: 65 microseconds

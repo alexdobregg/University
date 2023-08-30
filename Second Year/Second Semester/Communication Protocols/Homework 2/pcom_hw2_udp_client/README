@@ -1,0 +1,46 @@
+322CD Dobre Gigi-Alexandru
+
+Tema 2 Protocoale de Comunicatii.
+
+
+* subscriber.cpp:
+    - there are two functions that compute the subscribe/unsubscribe message
+and then send it to the server. For subscribe, the command is
+subscribe topic_name sf(1/0), and for unsubscribe it is unsubscribe topic_name.
+    - there is a function for computing the message received from the server,
+the tcp one. Depending on its type, it calculates the payload and the
+data_type, then prints the message.
+    - for the main, the socket is created and connected to the server address.
+Then a message containing the ID of the client trying to connect is sent and
+the Nagle algorithm is disabled.
+    - it is verified if it writes a command in his console, sending the messages
+for subscribe/unsubscribe or exiting the client for exit. Otherwise, it receives
+a message from the server. First, it receives the number of bytes he is about
+to get from server, then while he still has bytes left to receive, he gets the
+information, printing in the end the message for the topic he is subscribed to.
+
+* server.cpp:
+    - first, the sockets are created, the tcp and udp address are being filled
+with informations, binding the sockets to them. Then, the server iterates
+through all the file descriptors, waiting for one of them to send information.
+    - if the tcp_socket is set, it means a client is trying to connect.
+Everytime there is a new socket, the Nagle algorithm is deactivated. In this
+situation, there are two posibilities: either he is a new client, which
+means he will be inserted in the data base for the clients, or he is already
+connected/disconnected. For the connected situation, the socket is closed and
+the program moves on. For the disconnected situation, the client is reconnected
+and all the messages from the topics he is subscribed to and for which he has
+store-and-forward on are being sent to him.
+    - if the udp_socket is set, it means an udp client is sending a message
+to the server about a topic. So the server goes through every client, sees who is
+subscribed to the topic, computes the message and send it to him. If the client
+is disconnected and has his sf on, the message is stored and it will be sent to
+him when he reconnects.
+    - if none of the situation above happens, it means that a client already
+connected is sending a subscribe/unsubscribe/exit message. For exit, the client
+is disconnected, for subscribe he is subscribed to the topic he wants and for
+unsubscribe he is unsubscribed from the topic.
+    - at the end, the memory is freed and the sockets that are set closed.
+
+- for managing the inputs of the server (UDP/TCP clients, stdin), the I/O
+multiplexing is used.

@@ -1,0 +1,72 @@
+Tema 3 Protocoale de Comunicatie - Client Web. Comunicaţie cu REST API.
+322CD Dobre Gigi-Alexandru
+
+    To start with, I used the helpers.c/h, requests.c/h and buffer.c/h
+from lab 10, which I modified into cpp to work with the choice I made.
+After that, I modified the functions from requests.cpp (compute_get_requests
+and compute_post_request) a little because it was easier to make the data
+that needed to be sent with json and string than char **. I changed the
+cookies to cookie and I added the header. After that, I created a new
+function - compute_delete_request - for the delete command in which I
+followed the exact same steps from the functions above.
+    In order to create the json data and to parse the information received
+from the server, I used nhlomann json. To install it, I used the command
+"sudo apt-get install nhlomann-json3-dev". After that, I only included
+the the nhlomann/json.hpp.
+    The clients.cpp implementation has a function for each command, that
+are called in the main, depending on the command given by the client.
+
+* register_cmd:
+    - this function takes the input (username and password) and creates
+a json object out of it. Then with the help of this object, it creates
+the data that is sent to server. The message is computed and sent,
+then a response is received. Depending on it, the cases are: the account
+was created successfully, an error saying there are too many requests
+and an error for when the username already exists in the database.
+
+* login_cmd:
+    - this function works the same as the register, the only difference
+is that you can't login again if you are already logged in. For the success
+case, a cookie is received for further access and for the third case there
+are two types of errors: the username does not exist or the password is
+incorrect.
+
+* enter_library:
+    - in order to enter the library, a client must be connected. You can't
+enter the library again if you are already in. For the success case, a JWT
+token is received for further modifications or requests inside the library.
+
+* get_books:
+    - in order to receive summary information about the books, a client must
+be connected and inside the library. Other than that, the command get_books
+gives the client either an empty list of books if he did not add one yet or
+the list of his books.
+
+* get_book:
+    - same as get_books, the client must be connected and inside the library.
+In addition, every information about a book is received if it exists in 
+his library. If not, a message is printed saying that the client should
+use get_books first to obtain the id of a book.
+
+* add_book:
+    - same as get_books, the client must be connected and inside the library.
+Takes the input and creates a json object out of it. Then with the help
+of this object, it creates the data that is sent to server. The message is
+computed and sent, then a response is received. The book is added if there
+is no problem with the server.
+
+* delete_book:
+    - same as get_books, the client must be connected and inside the library.
+It deletes a book identified by its id. If there is no book with such id,
+then it prints an error, otherwise it will delete it.
+
+* logout:
+    - in order to logout, you must be logged in first. Other than that,
+it logs out the client and he loses his cookie and token. If he logs in
+again, he receives a new cookie and a new token.
+
+    I used json to create the data that is sent to the server by using
+dump(4), so this way it will be exactly how the server needs to receive
+it. For the errors and the data that is received from the server,
+the string is parsed and the result is printed for the client to see,
+especially when it comes to get_book and get_books.

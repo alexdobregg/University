@@ -1,0 +1,11 @@
+KMPSearch TEST: 
+
+Found pattern '[[a]]' at index 14
+Found pattern '[[a]]' at index 111
+Time taken by KMPSearch: 6 microseconds
+
+BoyerMooreSearch TEST: 
+
+Found pattern '[[a]]' at index 14
+Found pattern '[[a]]' at index 111
+Time taken by BoyerMooreSearch: 6 microseconds

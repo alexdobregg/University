@@ -1,0 +1,28 @@
+Dobre Gigi-Alexandru 322CD
+
+I. otp - Am mutat valorile in 2 registre si am facut xor intre ele.
+
+II. caesar - Verificam daca caracterul este o litera, caz in care
+incrementam valoarea pana cand a fost incrementat cu un numar egal
+cu cheia primita. Pentru momentul in care ajunge la 'Z' sau 'z', acestea
+sunt transformate in 'A' si 'a'. Daca nu, se copiaza caracterul din sir.
+
+III. vigenere - Asemanator lui Caesar, doar ca de data aceasta construim
+in edx cheia extinsa, ca mai apoi sa transformam valorile literelor in
+numere. Pentru fiecare caracter, aceste valori corespunzatoare pozitiilor
+lor reprezinta cheia de la caesar. Se procedeaza la fel.
+
+IV. my_strstr - Am stabilit care este indicele cand un caracter este egal 
+cu primul din subsir pe care il incrementam pana cand am ajuns la finalul 
+subsirului si am gasit o aparitie a acestuia in sir, sau care se va reseta
+la 0 daca vreun caracter din subsir nu corespunde cu cel din sir. Daca am
+gasit o aparitie scadem lungimea subsirului din indice, daca nu returnam
+lungimea sirului + 1.
+
+V. bin_to_hex - Am grupat caracterele cate 4 de la sfarsit spre inceput si am
+retinut in variabila cat cate grupari sunt si in variabila re daca exista
+caractere negrupate. Dupa care am facut un loop in care am calculat numarul
+reprezentat de cele 4 caractere din fiecare grupare si am intrat pe unul
+dintre cazurile 0-15. Asemanator am facut si pentru cele care aveau rest,
+calculand si pentru ele litera corespunzatoare. Am mutat caracterul la pozitia
+lui, iar la final am pus \n la sfarsitul sirului.

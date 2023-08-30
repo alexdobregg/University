@@ -1,0 +1,9 @@
+KMPSearch TEST: 
+
+The pattern was not found in the text.
+Time taken by KMPSearch: 3 microseconds
+
+BoyerMooreSearch TEST: 
+
+The pattern was not found in the text.
+Time taken by BoyerMooreSearch: 2 microseconds

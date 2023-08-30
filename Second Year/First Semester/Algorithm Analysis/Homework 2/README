@@ -1,0 +1,81 @@
+# Second Homework - AA
+
+### Dobre Gigi-Alexandru 322CD
+
+*Task: 
+        In this abstract class, the variables that I've used in my
+    implementation are declared.
+        readProblemData and decipherOracleAnswer are approximately the same for
+    every task. In readProblemData, we read the number of families, the number
+    of relations between them and, if the file contains it, the number of spies
+    for the first task, and the dimension of the extended family for the second
+    task.
+        Also, writeAnswer can differ from task to task, but mainly we read the
+    important data from the file created by the oracle after asking it, and
+    we write it in the output file. For the first two tasks, the value of truth
+    for a file is either true, and we have the solution, or false.
+        The important method is formulateOracleQuestion, which will be
+    explained for every task in the following paragraphs.
+
+*Task1 - formulateOracleQuestion:
+        The main idea behind this task is the reduction from
+    Graph Coloring -> SAT. It means that the families (N) are the vertexes, the
+    number of relations (M) is the number of edges, and the spies are the
+    colors. The number of variables we need for the reduction is N * K, and the
+    number of clauses is:
+    N + N * ((K * (K - 1)) / 2) + M * K because of the three FORs.
+        Let's assume that x is the matrix ([N][K]) of variables used in my
+    implementation; it is represented as a list of arrays, but for explaining
+    what happens in the code, we will use a matrix; E - Edges.
+        The first set of clauses has the complexity O(N * K), and it comes from
+    ∧(V(x[v][i])), where 1 <= i <= K; v ∈ V.
+        The second set of clauses has the complexity O(N * (K ^ 2)), and it
+    comes from ∧((¬x[v][i]) V (¬x[v][j])), 1 <= i < j <= K; v ∈ V.
+        The third set of clauses has the complexity O(M * K), and it comes from
+    ∧((¬x[v][i]) V (¬x[u][j])), where 1 <= i <= K; (v, u) ∈ E.
+
+*Task2 - formulateOracleQuestion:
+        The main idea behind this task is the reduction from Clique -> SAT.
+    It means that families (N) are the vertexes, the number of relations (M) is
+    the number of edges, and dimension of the extended family is the dimension
+    of a connected subgraph (K). The number of variables we need for the
+    reduction is N * K, and the number of clauses is:
+    K + N * ((K * (K - 1)) / 2) + (K * (K - 1) / 2) * (N * (N - 1) - M)
+    because of the three FORs;
+        Let's assume that x is the matrix ([N][K]) of variables used in my
+    implementation; it is represented as a list of arrays, but for explaining
+    what happens in the code, we will use a matrix; NE - Not Edges.
+        The first set of clauses has the complexity O(N * K), and it comes from
+    ∧(V(x[i][v])), where 1 <= i <= K; v ∈ V.
+        The second set of clauses has the complexity O(N * (K ^ 2)), and it
+    comes from ∧((¬x[i][v]) V (¬x[j][v])), where 1 <= i < j <= K, v ∈ V.
+        The third set of clauses has the complexity O((N ^ 2) * (K ^ 2)), and
+    it comes from ∧((¬x[i][u]) V (¬x[j][v]), where 1 <= i < j <= K, (v, u) ∈ NE.
+
+*Task3 - reduceToTask2 & extractAnswerFromTask2:
+        The main idea behind this task is the reduction from Minimum Vertex
+    Cover -> Clique (third task is reduced to second task until we find a
+    satisfiable K). It means that families (N) are the vertexes, the number
+    of relations (M) is the number of edges, and dimension of the extended
+    family is the dimension of a connected subgraph. The reduction is
+    represented by creating a new input file for the second task with
+    N, M, K (starting at N - 1 and decreasing until the families that need
+    to be arrested are found) on the first line, and the non edges on the
+    other lines. The complexity of this is greater than/ equal to the
+    complexity of the second task. Something like (N - K) * O(clauses of
+    task 2). extractAnswerFromTask2 - if on the first line it is True,
+    then we found the families that need to be arrested, if it is False,
+    then we need to decrease K and repeat the actions.
+
+*Bonus - formulateOracleQuestion:
+        The main idea behind this task is the reduction from Minimum Vertex
+    Cover -> Weighted Partial MaxSAT. It means that families (N) are the
+    vertexes and the number of relations (M) is the number of edges. The
+    number of variables we need for the reduction is N, and the number of
+    clauses is: M + N, because of the two FORs. Top is the sum of the weights
+    of the soft clauses + 1. To calculate the weight of a soft clause, I used
+    the formula: M - the number of relations a family has.
+        The first set of clauses (with a weight of top) has the complexity O(M),
+    and it comes from ∧(u V v), where (u, v) ∈ E; E - Edges.
+        The second set of clauses (with different weights previously defined),
+    has the complexity O(N), and it comes from ∧(¬u), where u ∈ V.

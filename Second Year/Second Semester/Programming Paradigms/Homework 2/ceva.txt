@@ -1,0 +1,104 @@
+goEast :: Behavior
+goEast pos@(x, y) game@(Game board (lin, col) g t h)
+    | board Array.! (x, y + 1) == [BlankC] = (Target (x, y + 1) goEast)
+    | board Array.! (x, y + 1) == [GatewayC] = (Target newPos goEast)
+    | board Array.! (x, y + 1) == [ObstacleC] = case board Array.! (x, y) of
+        TargetC : [GatewayC] -> (Target newPos2 goEast)
+        _ -> (Target pos goEast)
+    | otherwise = (Target pos goEast)
+        where
+            newPos = head list
+                where
+                    list = case [posO | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posI == (x, y + 1) ] of
+                        [] -> [posI | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posO == (x, y + 1) ]
+                        (el:_) -> [posO | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posI == (x, y + 1) ]
+            newPos2 = head list
+                where
+                    list = case [posO | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posI == (x, y)] of
+                        [] -> [posI | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posO == (x, y)]
+                        (el:_) -> [posO | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posI == (x, y)]
+
+{-
+    *** TODO ***
+
+    Comportamentul unui Target de a se deplasa cu o casuță înspre vest. 
+    Miscarea se poate face doar daca poziția este validă (se află pe tabla de
+    joc) și nu este ocupată de un obstacol. In caz contrar, Target-ul va rămâne 
+    pe loc.
+-}
+
+goWest :: Behavior
+goWest pos@(x, y) game@(Game board (lin, col) g t h)
+    | board Array.! (x, y - 1) == [BlankC] = (Target (x, y - 1) goWest)
+    | board Array.! (x, y - 1) == [GatewayC] = (Target newPos goWest)
+    | board Array.! (x, y - 1) == [ObstacleC] = case board Array.! (x, y) of
+        TargetC : [GatewayC] -> (Target newPos2 goWest)
+        _ -> (Target pos goWest)
+    | otherwise = (Target pos goWest)
+        where
+            newPos = head list
+                where
+                    list = case [posO | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posI == (x, y - 1)] of
+                        [] -> [posI | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posO == (x, y - 1)]
+                        (el:_) -> [posO | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posI == (x, y - 1)]
+            newPos2 = head list
+                where
+                    list = case [posO | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posI == (x, y)] of
+                        [] -> [posI | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posO == (x, y)]
+                        (el:_) -> [posO | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posI == (x, y)]
+
+{-
+    *** TODO ***
+
+    Comportamentul unui Target de a se deplasa cu o casuță înspre nord. 
+    Miscarea se poate face doar daca poziția este validă (se află pe tabla de
+    joc) și nu este ocupată de un obstacol. In caz contrar, Target-ul va rămâne 
+    pe loc.
+-}
+goNorth :: Behavior
+goNorth pos@(x, y) game@(Game board (lin, col) g t h)
+    | board Array.! (x - 1, y) == [BlankC] = (Target (x - 1, y) goNorth)
+    | board Array.! (x - 1, y) == [GatewayC] = (Target newPos goNorth)
+    | board Array.! (x - 1, y) == [ObstacleC] = case board Array.! (x, y) of
+        TargetC : [GatewayC] -> (Target newPos2 goNorth)
+        _ -> (Target pos goNorth)
+    | otherwise = (Target pos goNorth)
+        where
+            newPos = head list
+                where
+                    list = case [posO | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posI == (x - 1, y)] of
+                        [] -> [posI | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posO == (x - 1, y)]
+                        (el:_) -> [posO | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posI == (x - 1, y)]
+            newPos2 = head list
+                where
+                    list = case [posO | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posI == (x, y)] of
+                        [] -> [posI | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posO == (x, y)]
+                        (el:_) -> [posO | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posI == (x, y)]
+
+{-
+    *** TODO ***
+
+    Comportamentul unui Target de a se deplasa cu o casuță înspre sud. 
+    Miscarea se poate face doar daca poziția este validă (se află pe tabla de
+    joc) și nu este ocupată de un obstacol. In caz contrar, Target-ul va rămâne 
+    pe loc.
+-}
+goSouth :: Behavior
+goSouth pos@(x, y) game@(Game board (lin, col) g t h)
+    | board Array.! (x + 1, y) == [BlankC] = (Target (x + 1, y) goSouth)
+    | board Array.! (x + 1, y) == [GatewayC] = (Target newPos goSouth)
+    | board Array.! (x + 1, y) == [ObstacleC] = case board Array.! (x, y) of
+        TargetC : [GatewayC] -> (Target newPos2 goSouth)
+        _ -> (Target pos goSouth)
+    | otherwise = (Target pos goSouth)
+        where
+            newPos = head list
+                where
+                    list = case [posO | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posI == (x + 1, y)] of
+                        [] -> [posI | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posO == (x + 1, y)]
+                        (el:_) -> [posO | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posI == (x + 1, y)]
+            newPos2 = head list
+                where
+                    list = case [posO | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posI == (x, y)] of
+                        [] -> [posI | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posO == (x, y)]
+                        (el:_) -> [posO | gPos@(posI@(xI, yI), posO@(xO, yO)) <- g, posI == (x, y)]

@@ -1,0 +1,15 @@
+KMPSearch TEST: 
+
+Found pattern 'ow' at index 58
+Found pattern 'ow' at index 66
+Found pattern 'ow' at index 70
+Found pattern 'ow' at index 109
+Time taken by KMPSearch: 11 microseconds
+
+BoyerMooreSearch TEST: 
+
+Found pattern 'ow' at index 58
+Found pattern 'ow' at index 66
+Found pattern 'ow' at index 70
+Found pattern 'ow' at index 109
+Time taken by BoyerMooreSearch: 11 microseconds

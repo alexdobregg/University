@@ -1,0 +1,53 @@
+Dobre Gigi-Alexandru 322CD
+
+Tema 1 Protocoale de Comunicatie
+
+
+    Besides all the functions present in the in skel.c, I made the following
+ones:
+
+* read_rtable: a function that receive as parameters the route table and the
+name of the file from which it should read the entries. It allocates the memory
+necessary for the route table, then proceeds to read the data from the file.
+It takes the prefix, next hop, mask and interface as strings, then using
+inet_addr and atoi, it transforms them in binary data from in network order
+from number-and-dots, respectively into an int for interface.
+
+* free_rtable and free_atable: functions to free the memory allocated for
+the route table and the arp table.
+
+* cmp_quick: a comparing function used by quick sort to sort the route table
+after prefixes.
+
+* get_best_route: a function to search the best route based on the next
+formula: rtable[mid]->mask & dest_ip. It uses the binary search to find
+which prefix is equal to mask & dest_ip and it returns that entry from
+the table.
+
+* get_arp_entry: a function that goes through the arp table to find the
+entry that has the ip equal to the next_hop of the best route.
+
+    All that is left is the main.c implementation. I read the table and
+I allocate memory for the arp table. I chose to allocate the vector of
+entries with only 1, because we don't know how many entries we will have.
+I sort the route table, then for every packet I obtain the ip header and
+the ethernet header. I try to obtain the icmp header using parse_icmp. If
+it is different than null, then we need to check if it is for the router
+and if it is an echo request in order to send an icmp.
+    After that, I try to obtain the arp header. If it is different than null,
+we need to see if it is a request or a reply. For the request, I also check to
+see if it is for the router, and if it is, I just send an arp reply with the
+right mac address. If it's type is reply, I check to see if the queue is empty,
+meaning I have to continue, but if it's not, then I need to put the new arp
+entry in the arp table. I obtain the packet from the queue, update the ip
+header and the ethernet header and send it.
+    If it is none of the things above, then i proceed to check if the TTL is
+below 1, sending an icmp error with the type ICMP_TIME_EXCEEDED if so. I also
+verify the checksum and drop the packet if it is incorrect. I drecrement the
+TTL and update the checksum.
+    Then I proceed to obtain the best route. If that is not possible, the
+program sends an icmp error  with the type ICMP_DEST_UNREACH. Then I search
+for the arp entry which has an ip equal to best route's next hop. If we find
+that entry, the packet is sent after changing the dhost and shost of the 
+ethernet header. If there is no entry, then we need to put that packet in
+the queue and send an arp request.

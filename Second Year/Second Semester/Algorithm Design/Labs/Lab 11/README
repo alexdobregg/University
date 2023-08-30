@@ -1,0 +1,169 @@
+Graful de la curs modficiat:
+A - B: 9
+A - G: 10
+A - H: 6
+A - I: 3
+B - G: 11
+B - C: 5
+C - D: 8
+C - E: 12
+D - F: 9
+E - F: 2
+G - H: 4
+I - J: 5
+I - L: 8
+J - K: 14
+K - L: 7
+
+
+1. Algoritmul Prim
+
+Nodul sursa este s = I;
+
+A = {}
+
+Pentru fiecare u ∈ V, d[u] = INF, p[u] = null -> initializare.
+
+d[s] = 0 => d[I] = 0;
+
+d[A] = 3; d[J] = 5; d[L] = 8;
+
+1. Q = {(A, 3); (J, 5); (L, 8); (B, inf); (C, inf); (D, inf); (E, inf); (F, inf); (G, inf); (H, inf); (K, inf)}
+
+Este extras nodul A (d[A] = 3) -> A = {(A, I)}
+
+* B => d[B] (inf) > w(A, B) (9) => d[B] = 9; p[B] = A;
+* G => d[G] (inf) > w(A, G) (10) => d[G] = 10, p[G] = A;
+* H => d[H] (inf) > w(A, H) (6) => d[H] = 6, p[H] = A;
+
+2. Q = {(J, 5); (H, 6); (L, 8); (B, 9); (G, 10); (C, inf); (D, inf); (E, inf); (F, inf); (K, inf)} 
+
+Este extras nodul J (d[J] = 5) -> A = {(A, I); (J, I)}
+
+* K => d[K] (inf) > w(J, K) (14) => d[K] = 14, p[K] = J;
+
+3. Q = {(H, 6); (L, 8); (B, 9); (G, 10); (K, 14); (C, inf); (D, inf); (E, inf); (F, inf)}
+
+Este extras nodul H (d[H] = 6) -> A = {(A, I); (J, I); (H, A)}
+
+* G => d[G] (10) > w(H, G) (4) => d[G] = 4, p[G] = H;
+
+4. Q = {(G, 4); (L, 8); (B, 9); (K, 14); (C, inf); (D, inf); (E, inf); (F, inf)}
+
+Este extras nodul G (d[G] = 4) -> A = {(A, I); (J, I); (H, A); (G, H)}
+
+* B => d[B] (9) < w(B, G) (11)
+
+5. Q = {(L, 8); (B, 9); (K, 14); (C, inf); (D, inf); (E, inf); (F, inf)}
+
+Este extras nodul L (d[L] = 8) -> A = {(A, I); (J, I); (H, A); (G, H); (L, I)}
+
+* K => d[K] (14) > w(L, K) (7) => d[K] = 7, p(K) = L;
+
+6. Q = {(K, 7); (B, 9); (C, inf); (D, inf); (E, inf); (F, inf)} 
+
+Este extras nodul K (d[K] = 7) -> A = {(A, I); (J, I); (H, A); (G, H); (L, I); (K, L)}
+
+7. Q = {(B, 9); (C, inf); (D, inf); (E, inf); (F, inf)}
+
+Este extras nodul B (d[B] = 9) -> A = {(A, I); (J, I); (H, A); (G, H); (L, I); (K, L); (B, A)}
+
+* C => d[C] (inf) > w(B, C) (5) => d[C] = 5, p[C] = B
+
+8. Q = {(C, 5); (D, inf); (E, inf); (F, inf)}
+
+Este extras nodul C (d[C] = 5) -> A = {(A, I); (J, I); (H, A); (G, H); (L, I); (K, L); (B, A); (C, B)}
+
+* D => d[D] (inf) > w(C, D) (8) => d[D] = 8, p[D] = C
+* E => d[E] (inf) > w(C, E) (12) => d[E] = 12, p[E] = C
+
+9. Q = {(D, 8); (E, 12); (F, inf)}
+
+Este extras nodul D (d[D] = 8) -> A = {(A, I); (J, I); (H, A); (G, H); (L, I); (K, L); (B, A); (C, B); (D, C)}
+
+* F => d[F] (inf) > w(D, F) (9) => d[F] = 9, p[F] = D
+
+10. Q = {(F, 9), (E, 12)}
+
+Este extras nodul F (d[F] = 9) -> A = {(A, I); (J, I); (H, A); (G, H); (L, I); (K, L); (B, A); (C, B); (D, C); (F, D)}
+
+* E => d[E] (12) > w(F, E) (2) => d[E] = 2, p[E] = F
+
+11. Q = {(E, 2)}
+
+Este extras nodul E (d[E] = 2) -> A = {(A, I); (J, I); (H, A); (G, H); (L, I); (K, L); (B, A); (C, B); (D, C); (F, D); (E, F)}
+
+12. Q = {} 
+=> AMA = {(A, I); (J, I); (H, A); (G, H); (L, I); (K, L); (B, A); (C, B); (D, C); (F, D); (E, F)}
+
+
+2. Algoritmul lui Kruskal
+
+AMA = {}
+
+Se ordoneaza muchiile dupa cost:
+
+E - F: 2
+A - I: 3
+G - H: 4
+B - C: 5
+I - J: 5
+A - H: 6
+K - L: 7
+C - D: 8
+I - L: 8
+A - B: 9
+D - F: 9
+A - G: 10
+B - G: 11
+C - E: 12
+J - K: 14
+
+
+Arbori:
+{A}, {B}, {C}, {D}, {E}, {F}, {G}, {H}, {I}, {J}, {K}, {L}
+ 1    2    3    4    5    6    7    8    9   10   11   12
+
+1. E - F: arb[E] (5) != arb[F] (6) => arb[F] = 5 (se adauga la arborele lui E);
+            AMA = {(E, F)};
+
+2. A - I: arb[A] (1) != arb[I] (9) => arb[I] = 1 (se adauga la arborele lui A);
+            AMA = {(E, F); (A, I)};
+
+3. G - H: arb[G] (7) != arb[H] (8) => arb[H] = 7 (se adauga la arborele lui G);
+            AMA = {(E, F); (A, I); (G, H)};
+
+4. B - C: arb[B] (2) != arb[C] (3) => arb[C] = 2 (se adauga la arborele lui B);
+            AMA = {(E, F); (A, I); (G, H); (B, C)};
+
+5. I - J: arb[I] (1)) != arb[J] (10) => arb[J] = 1 (se adauga la arborele lui A);
+            AMA = {(E, F); (A, I); (G, H); (B, C); (I, J)};
+
+6. A - H: arb[A] (1) != arb[H] (7) => arb[H] = 1; arb[G] = 1 (se adauga la arborele lui A); 
+            AMA = {(E, F); (A, I); (G, H); (B, C); (I, J); (A, H)};
+
+7. K - L: arb[K] (11) != arb[L] (12) => arb[L] = 11 (se adauga la arborele lui K); 
+            AMA = {(E, F); (A, I); (G, H); (B, C); (I, J); (A, H); (K, L)};
+
+8. C - D: arb[C] (2) != arb[D] (4) => arb[D] = 2 (se adauga la arborele lui B); 
+            AMA = {(E, F); (A, I); (G, H); (B, C); (I, J); (A, H); (K, L); (C, D)};
+
+9. I - L: arb[I] (1) != arb[L] (11) => arb[L] = 1; arb[K] = 1 (se adauga la arborele lui A); 
+            AMA = {(E, F); (A, I); (G, H); (B, C); (I, J); (A, H); (K, L); (C, D); (I, L)};
+
+10. A - B: arb[A] (1) != arb[B] (2) => arb[B] = 1; arb[C] = 1; arb[D] = 1 (se adauga la arborele lui A);
+            AMA = {(E, F); (A, I); (G, H); (B, C); (I, J); (A, H); (K, L); (C, D); (I, L); (A, B)};
+
+11. D - F: arb[D] (1) != arb[F] (5) => arb[F] = 1; arb[E] = 1 (se adauga la arborele lui A);
+            AMA = {(E, F); (A, I); (G, H); (B, C); (I, J); (A, H); (K, L); (C, D); (I, L); (A, B); (D, F)};
+
+12. A - G: arb[A] (1) == arb[G] (1) => Se formeaza ciclu - A G H A;
+
+13. B - G: arb[B] (1) == arb[G] (1) => Se formeaza ciclu - B G A B;
+
+14. C - E: arb[C] (1) == arb[E] (1) => Se formeaza ciclu - C E F D C;
+
+15. J - K: arb[J] (1) == arb[K] (1) => Se formeaza ciclu - J K L I J;
+
+
+AMA = {(E, F); (A, I); (G, H); (B, C); (I, J); (A, H); (K, L); (C, D); (I, L); (A, B); (D, F)};
