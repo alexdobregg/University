@@ -1,0 +1,52 @@
+Dobre Gigi-Alexandru 312CD
+
+1.Implementare C Arbori de Intervale
+
+	Pentru acest task am folosit o functie care creeaza noduri in mod
+recursiv si seteaza campurile din fiecare nod la valorile corespunzatoare,
+in functie de intervalul primit ca argument. In functia construieste_arbore
+este construit arborele de intervale, apelandu-se functia creare_nod pentru
+radacina acestuia, urmandu-se a se completa arborele in urma recursivitatii.
+	Pentru functia actualizare_interval_pentru_nod am verificat daca
+intervalul nodului este cuprins in intervalul dat. Daca da, se va actualiza
+informatia din el, altfel se calculeaza mijlocul si se intra in recursivitati
+daca sunt indeplinde conditiile,actualizandu-se informatia din nod dupa
+iesirea din acestea.
+	Pentru functia de interogare_interval_pentru_nod, precum la functia
+anterioara, se returneaza informatia din nod daca intervalul lui este cuprins
+in intervalul dat, daca nu, se calculeaza mijlocul, se obtin valoarea stanga
+si valoarea dreapta in urma recursivitatii (in cazul in care nu se intra in ele
+acestea sunt 0), si se returneaza un raspuns combinat intre aceste 2 valori.
+
+2.Intersecții de intervale
+
+	Pentru functia citeste_intrare, am deschis fisierul, am alocat toate
+structurile si am facut verificarile de fiecare data pentru ca in cazul unei
+esuari sa se dezaloce tot ce a fost alocat inainte, dupa care am citit datele.
+	Am facut o functie numita OrizVert care determina tipul unui interval,
+precum si o functie de minim si una de maxim. Pentru a folosi qsort, am facut
+si o functie de comparare care se bazeaza pe x-ul fiecarui punct. Totodata
+am facut si functia care verifica daca 2 intervale se intersecteaza pentru
+varianta triviala.
+	Am facut si o functie pentru a obtine punctele, tipul intervalului din
+care fac parte si intervalul, dupa care le-am sortat.
+	Pentru varianta cu arbori, am verificat daca punctul este capat stanga
+al unui interval orizontal, actualizand intervalul [y, y] cu 1, daca este
+capat dreapta cu -1, iar daca este capatul inferior al unui interval vertical
+se cauta perechea lui si se interogheaza intervalul [y1, y2] pentru a afla
+numarul de intersectii.
+	Pentru varianta triviala, am verificat interval cu interval daca
+se intersecteaza.
+
+3.Poziție liberă
+
+	Se deschide fisierul, se fac alocari si se verifica daca s-au realizat
+cu succes. Se citesc datele din fisier.
+	Pentru varianta triviala, se verifica daca pozitia este goala. Daca da,
+se va completa cu valoarea respectiva, iar daca nu, se va cauta urmatoarea
+pozitie goala spre 0.
+	Pentru varianta cu arbori, interogam nodul frunza care are valoarea care
+trebuie pusa in vector. Daca aceasta este 0, inseamna ca pozitia este goala in
+vector si o modifica, facand actualizare pentru acel nod. Daca nu, iteram pentru
+a cauta o pozitie goala, folosind interogarea si completam pe acea pozitie cu
+valoarea din date, daca mai este vreo pozitie goala.

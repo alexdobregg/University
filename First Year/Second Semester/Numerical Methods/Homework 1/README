@@ -1,0 +1,98 @@
+Dobre Gigi-Alexandru 312CD
+
+Task 1 - Sparse Jacobi
+
+  Generate Probabilities System - Am plecat de la primul caz si anume cel in
+care avem rows = 3 si am completat matricea A cu rezultatul care ar fi iesit.
+Totodata, am obtinut numarul de noduri si am calculat b-ul. In functie de
+valoarea lui rows, matricea A va trebui completata cu noi valori corespunzatoare
+si unele din ea inlocuite. Astfel se itereaza prin diferite pozitii si vom completa
+atat vecinii cat si noile valori in functie de numarul de rows cu rezultatele
+corespunzatoare depinzand de pozitia nodului precum: colt = 4, latura = 5, nod
+in interior = 6 si vecinii fiecarui nod = -1 pe locurile din matrice.
+
+  Matrix to CSR - Am folosit functia find pentru a gasi valorile nenule ale
+matricei A si impreuna cu acestea, am obtinut indicii pentru coloane si indicii
+pentru randuri, inversate in apel deoarece am folosit transpusa lui A. Calculez
+rowptr parcurgand prin vectorul indicilor pentru linii pentru a gasi locul
+din cel pentru coloane a primei valori de pe rand.  
+
+  Jacobi Factorization - Calculez G si c asociate lui A si b.
+
+  Jacobi Sparse - Initializam prev_x cu 0 si dupa aceea vom repeta procesul prin
+care este calculat x, si anume prin folosirea functiei csr_multiplication, pe care am
+vectorizat-o intr-o anumita masura pentru a scoate timp mai mic, rezultat la care 
+adaugam c, pana cand eroare reprezentata de norma dintre x si prev_x este mai mica
+decat toleranta impusa, actualizand la fiecare repetare prev_x la noul x.
+
+Task 2 - K Means
+
+  Clustering - Calculam coordonatele centroizilor initiali ca fiind media aritmetica
+a coordonatelor punctelor care indeplinesc conditia mod NC = i. Dupa aceea vom
+repeta procesul de recalculare a centroizilor pana cand acestia nu isi vor mai
+schimba pozitia. Prin urmare, pentru a-i recalcula, vom tine minte intr-un vector de
+pozitii acei indici care apartin centroizilor fata de care fiecare punct este
+cel mai aproape, dupa care vom aplica pentru centroizii noi aceeasi metoda, cea cu media
+aritmetica a acestor puncte.
+
+  Compute Cost - pentru fiecare punct vom determina catre care centroid are distanta
+minima, dupa care vom aduna la cost acea distanta.
+
+Task 3 - Householder Prediction	
+
+  RGB Histogram - Obtinem matricea cu 3 dimensiuni cu ajutorul functiei imread si
+parcurgem fiecare dintre R, G si B si obtinem un vector in urma aplicarii functiei
+histc pe vectorul coloana cu toate elementele din matricile fiecarei culori, dupa
+care construim solutia sistemului.
+
+  HSV Histogram - Am vectorizat algoritmul primit drept pseudocod pentru transformarea
+RGB in HSV. Precum la RGB, am obtinut vectorii R, G si B din matricea corespunzatoare
+punand toate valorile intr-o coloana, dupa care am impartit la 255. Punem acesti vectori
+intr-o matrice pe linii pentru a reusi obtine vectorul cu valorile maxime pe care il
+transpunem pentru a fi coloana. In acelasi fel obtinem si minimul si efectuam calculul
+lui Delta. Obtinem pozitiile in care Cmax este egal cu R, cu G si cu B in 3 vectori,
+precum si pozitiile in care Delta este egal cu 0 pentru a completa matricea H pe acele
+pozitii cu 0. Dupa aceea, pur si simplu completam pozitiile corespunzatoare locurilor
+in care am obtinut indicii dupa formulele din pseudocod. Calculam S prin completarea
+pozitiilor in care Cmax = 0 cu 0 si pe cele in care e diferit dupa formula. Obtinem 
+V si precum la subpunctul anterior, vom completa solutia dupa obtinerea vectorilor cu
+ajutorul functiei histc.
+
+  Householder + SST - Acestea sunt implementari proprii din cadrul laboratorului.
+
+  Preprocess - Vom creea pathurile catre pozele cu pisici si catre cele fara si vom
+obtine un vector cu numele pozelor. Se va completa y cu 1 pentru pozele cu cats si cu
+-1 pentru pozele fara, in aceasta ordine, dupa care vom calcula matricea X in care fiecare
+linie este obtinuta cu ajutorul functiilor rgbHistogram si hsvHistogram, in functie de
+histograma primita ca parametru.
+
+  Learn - Vom creea X tilda prin adaugarea unei coloane de 1 la finalul lui X, dupa
+care vom obtine descompunerea QR cu ajutorul functiei Householder a lui X tilda.
+Q * R * w = y; // Inmultim la stanga cu Q' deoarece Q' = Q^(-1).
+R * w = Q' * y; // Inmultim la stanga cu R' pentru a obtine o matrice patratica.
+R' * R * w = R' * Q' * y;
+Aplicam SST si obtinem solutia sistemului.
+
+  Evaluate - Vom creea pathurile catre pozele cu pisici si catre cele fara si vom
+obtine un vector cu numele pozelor. Se va completa y cu 1 pentru pozele cu cats si cu
+-1 pentru pozele fara, doar ca de data aceasta pentru fiecare linie obtinuta cu ajutorul
+functiilor rgbHistogram si hsvHistogram din fiecare poza, vom calcula pozitia 
+corespunzatoare din yPrezis cu ajutorul formulei date. Vom inlocui
+valorile >= 0 cu 1 si pe cele < 0 cu -1 dupa care vom compara y-ul prezis cu cel 
+adevarat pentru a obtine numarul de poze prezise si pentru a calcula procentajul.
+
+
+Task 4 - Gradient Descent prediction
+
+  Preprocess + RGB + HSV - La fel ca la taskul anterior.
+
+  Learn - Se va scala fiecare coloana a lui X dupa formula din enunt, dupa care
+se va construi X tilda prin adaugarea coloanei de 1 la finalul lui X. Vom obtine
+un w cu valori random in intervalul [-0.01, 0.01] dupa care, pentru un numar de epoci
+vom obtine batch_size = 64 pozitii random si vom completa Xbatch si ybatch dupa acele
+pozitii, urmand ca mai apoi sa calculam noul w.
+
+  Evaluate - Si aceasta functie este asemanatoare cu cea de la taskul anterior, singurele
+lucruri care difera fiind punerea vectorilor obitnuti intr-o matrice pentru a putea fi 
+scalata pe coloane, dupa care construirea lui X tilda si obtinerea lui yPrezis.
+

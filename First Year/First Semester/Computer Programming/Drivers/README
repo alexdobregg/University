@@ -1,0 +1,47 @@
+Dobre Gigi-Alexandru 312CD
+
+Task 1
+    Se aloca un vector in care se va calcula produsul tuturor elementelor
+din vectorul primit, exceptand cel de pe pozitia pentru care se calculeaza
+produsul.
+
+Task 2
+    Se aloca o matrice care va contine elementele inversate ale matricii date.
+Intai este rotita matricea prin schimbarea elementelor intre ele, apoi
+este completata noua matrice cu elementele rotite.
+
+Task 3
+    Se aloca vectorul in care se va retine suma elementelor dintre coordonatele
+date. Sunt folosite 2 functii, una de minim si una de maxim pentru a obtine
+ordinea coordonatelor si apoi se face suma.
+
+Task 4
+    Intai este alocat soferul si vectorul de curse in allocDriver, apoi
+in allocDrivers este alocat un vector de soferi, pentru fiecare dintre ei
+folosindu-se functia allocDriver.
+
+Task 5
+    Este citit numarul de soferi si alocat un vector in care se va retine
+numarul de curse pentru fiecare sofer. Se citeste din fisier fiecare camp
+pentru soferi, dar si pentru fiecare cursa a lor. Pentru printare se foloseste
+funtia fwrite, scriindu-se in alt fisier fiecare camp al soferului si al
+fiecarei curse a lui.
+
+Task 6
+    Este alocat un vector in care se retine ratingul fiecarui sofer. Se obtine
+numarul de stele pentru fiecare sofer, cat si cursele anulate sau in
+desfasurare si se calculeaza ratingul dupa formula data. Se retine pozitia
+soferului cu ratingul maxim si se returneaza numele lui.
+
+Task 7
+    Am creat o structura numita distantaeucl care are ca si campuri distanta
+si pozitia. Se calculeaza pentru fiecare sofer distanta euclidiana si se retine
+pozitia lor. In urma sortarii cu cele doua functii, bubbleSort si bubbleSort2
+campurile din structura sunt inversate, prima data dupa distanta, si apoi in
+cazul in care distanta este egala, dupa nume. Este folosit un vector de
+pointeri in care se retin soferii ordonati.
+
+Task 8
+    Este eliberata memoria alocata cursei si cea alocata soferului in
+freeDriver, iar apoi este apelata aceasta functie pentru fiecare sofer si
+este eliberata memoria alocata vectorului de soferi in functia freeDrivers.

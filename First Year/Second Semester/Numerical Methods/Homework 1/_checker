@@ -1,0 +1,54 @@
+# Create separate checker dirs
+mkdir checker-part-1
+cp -r checker/checker-part-1/* checker-part-1/
+mkdir checker-part-2
+cp -r checker/checker-part-2/* checker-part-2/
+mkdir checker-part-3
+cp -r checker/checker-part-3/* checker-part-3/
+mkdir checker-part-4
+cp -r checker/checker-part-4/* checker-part-4/
+
+# Copy student src/
+cp -r part-1/* checker-part-1/
+cp -r part-2/* checker-part-2/
+cp -r part-3/* checker-part-3/
+cp -r part-4/* checker-part-4/
+
+# Check part 1
+printf "\nChecking part 1...\n"
+cd checker-part-1
+timeout 130 octave-cli checker_part_1.m 2>\dev\null || (printf "Timeout; 0 puncte\n"; echo "0" > results)
+cd ..
+
+# Check part 2
+printf "\nChecking part 2...\n"
+cd checker-part-2
+timeout 30 octave-cli checker_part_2.m 2>\dev\null || (printf "Timeout; 0 puncte\n"; echo "0" > results)
+cd ..
+
+# Check part 3
+printf "\nChecking part 3...\n"
+cd checker-part-3
+timeout 300 octave-cli checker_part_3.m 2>\dev\null || (printf "Timeout; 0 puncte\n"; echo "0" > results)
+cd ..
+
+# Check part 4
+printf "\nChecking part 4...\n"
+cd checker-part-4
+timeout 140 octave-cli checker_part_4.m 2>\dev\null || (printf "Timeout; 0 puncte\n"; echo "0" > results)
+cd ..
+
+# Get total score
+cd checker-part-1; score1=$(cat results); cd ..
+cd checker-part-2; score2=$(cat results); cd ..
+cd checker-part-3; score3=$(cat results); cd ..
+cd checker-part-4; score4=$(cat results); cd ..
+
+total=$(bc -l <<<"${score1}+${score2}+${score3}+${score4}")
+printf "TOTAL: %.0f/120\n" $total
+
+# Remove dirs
+rm -rf checker-part-1
+rm -rf checker-part-2
+rm -rf checker-part-3
+rm -rf checker-part-4

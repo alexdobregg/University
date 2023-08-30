@@ -1,0 +1,48 @@
+Dobre Gigi-Alexandru 312CD
+
+Cerinta 0 - Interactive Console
+
+    Am folosit functia strstr pentru a compara aparitia anumitor stringuri
+in ceea ce este introdus de la tastatura, urmand sa fie apelata functia
+corespunzatoare stringului introdus. Am folosit un while pentru a continua
+sa introducem de la tastatura pana la aparitia stringului "quit".
+
+Cerinta 1 - Uppercase
+
+    Am creat o functie care face intai toate majusculele mici, iar dupa aceea
+va face toate literele de la inceput de vers litere mari.
+
+Cerinta 2 - Trimming
+
+    Am creat o functie care mai intai va elimina toate caracterele care
+nu sunt litere, ca rezultat avand o singura aparitie acestora. In
+conitnuare, se elimina toate caracterele care nu sunt litere si
+sunt diferite de space cu ajutorul functiei strtok, urmand
+sa fie reconstruita poezia.
+
+Cerinta 3 - Make it silly
+
+    Apoi am creat o functie care verifica daca caracterul este o litera,
+iar in cazul acesta se va genera un numar random, urmand sa fie verificat
+daca este mai mic decat probabilitatea extrasa din string. Daca da, se
+face schimbarea majuscula <-> minuscula.
+
+Cerinta 4 - Make it friendlier
+
+    Am creat o functie care va obtine fiecare cuvant din versuri
+si se va cauta daca acesta are diminutiv. Daca nu, va fi concatenat
+stringului gol, iar daca da, va fi concatenat diminutivul acestuia.
+Totodata, sunt concatenate si celelalte caractere care nu sunt
+litere.
+
+Cerinta 5 - Make it rhyme
+
+    Se extrage tipul de rima din string, iar in functie de acesta
+este apelata una dintre cele 3 functii ale acestui task. Functioneaza
+pe aceeasi metoda, cu modificarile necesare compararii versurilor.
+Se imparte poezia in versuri, se obtine ultimul cuvant si ultima litera,
+iar in functie de tipul de rima se vor face compararile necesare pentru
+a vedea in ce fel sunt reconstruite versurile, fie cum erau la inceput,
+fie cu un sinonim al cuvintelor de la final. La rima imbratisata
+daca numarul versului este par, se va compara cu numarul versului +3,
+iar daca este impar, se va compara cu numarul versului +1.

@@ -1,0 +1,27 @@
+Dobre Gigi-Alexandru 312CD
+
+General:
+	Am deschis fisierele de input si de output primite ca parametrii
+si in functie de cerinta, am apelat una dintre cele trei functii pentru
+rezolvarea taskurilor. Am implementat o functie care citeste numele actorilor
+din fisier si le baga intr-o matrice tridimensionala. Totodata, am implementat
+si o functie care construieste un graf cu ajutorul listelor de adiacenta.
+
+Task 1:
+	Pentru rezolvarea acestui task, in urma obtinerii grafului, am folosit
+algoritmul Dfs, impreuna cu functia visit, pentru a extrage subgraful conex care are cele mai multe noduri. Intai am extras toate subgrafurile intr-un vector comun, dar
+pastrand ordinea, dupa care din acest vector am obtinut subgraful care ne interesa.
+Am ordonat componentele acestuia si am printat in fisier rezultatul.
+
+Task 2:
+	Pentru rezolvarea acestui task, in urma obtinerii grafului, am folosit
+algoritmul Dijkstra pentru a calcula distanta minima de la nodul sursa la toate celelalte, iar apoi am returnat distanta minima catre nodul care ne interesa si
+am printat-o in fisier.
+
+Task 3:
+	Pentru rezolvarea acestui task, in urma obtinerii grafului, am folosit
+algoritmul prezentat in pseudocod cu mici modificari. Am obtinut si numarul de
+punti si numele celor care fac parte din fiecare punte. Am construit un vector
+in care am trecut fiecare punte ordonata atat in functie de fiecare pereche,
+cat si in functie de celelalte punti, pe care le-am printat in fisier alaturi
+de numarul de punti.

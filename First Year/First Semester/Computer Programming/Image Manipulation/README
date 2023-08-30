@@ -1,0 +1,40 @@
+Dobre Gigi-Alexandru 312CD
+
+General
+    Pentru fiecare task sunt citite datele despre imagine din nou.
+
+Task 1
+    Pentru rezolvarea taskului 1 am creat o functie numita Black_White, in
+care am folosit o variabila numita grey pentru a retine suma culorilor din
+fiecare pixel, impartita la 3, si am egalat culorile pixelului cu aceasta.
+Am scris in fisier matricea cu pixelii schimbati.
+
+Task 2
+    Pentru rezolvarea taskului 2 am creat 3 functii numite No_Crop, No_Crop1
+si No_Crop2. In No_Crop am aflat care este maximul dintre inaltime si lungime,
+iar in functie de rezultat, am apelat una dintre celelalte 2 functii,
+in care scriu noile date in urma modificarii din infoheader. No_Crop1 este
+folosita in cazul in care inaltimea este mai mare decat lungimea, iar No_Crop2
+pentru celalalt caz. In ambele, in functie de paritatea diferentei, voi scrie
+zonele albe si apoi pixelii conform metodei date.
+
+Task3
+    Pentru rezolvarea taskului 3 am creat 2 functii numite Filter si
+Filterwriting. In Filter citesc datele si apelez functia Filterwriting. In
+aceasta am rasturnat matricea de pixeli, dupa care daca ma aflam pe o pozitie
+cu vecini coloane sau randuri care nu fac parte din matricea initiala, ignor
+valorile de pe acele randuri sau coloane pentru ca oricum sunt setate la
+(0, 0, 0), deci nu influenteaza in vreun fel suma. Calculez suma pentru fiecare
+pozitie si fac schimbarile necesare pixelilor. Scriu matricea cu noii pixeli.
+
+Task4
+    Pentru rezolvarea taskului 4 am creat 2 functii numite Pooling si
+Poolingwriting. In pooling citesc datele si apelez functia Poolingwriting. In
+aceasta am rasturnat matricea de pixeli, dupa care am setat valorile pentru
+maxim si minim egale cu cele ale pixelului curent. In cazul in care ma aflu
+pe o pozitie cu vecini randuri sau coloare care nu fac parte din matricea
+initiala, ignor aceste valori deoarece vor fi setate pe (0, 0, 0). Calculez
+maximul sau minimul din zona delimitata de lungimea matricii filtrului de
+pooling. Daca trebuie calculat minimul, in functie de lungimea matricii
+filtrului, zonele de pe margine au minimul 0. Scriu matricea cu noii pixeli.
+

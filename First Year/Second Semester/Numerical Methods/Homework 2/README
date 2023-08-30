@@ -1,0 +1,41 @@
+Dobre Gigi-Alexandru 312CD
+
+Task 1
+
+	Iterative - Deschidem fisierul si extragem valorile corespunzatoare
+din acesta un urmatoarea ordine: intai obtinem numarul de noduri iar apoi
+folosind o iteratie de la 1 pana la acesta, vom crea matricea de adiacenta
+in functie de fiecare nod si de vecinii lui punand pe pozitiile respective
+nodurile cu care se invecineaza 1 si in rest 0 si totodata obtinem si
+vectorul L care are numarul de vecini pentru fiecare nod. Cazul in care
+un vecin al unui nod este nodul insusi consta in setarea pe diagonala
+cu 0 si scaderea din numarul de vecini ai acestui nod de cate ori
+apare nodul respectiv printre vecinii lui. Pentru a calcula R-ul va
+trebui sa initializam o variabila numita last_R care are pe toate pozitiile
+1 / numarul de noduri si sa aflam matricea M. Vom itera si schimba R-ul
+pana cand vom obtine o aproximare destul de buna cu precizarea ca 
+trebuie returnat penultimul R.
+
+Task 2
+
+	Algebraic - Prima parte este exact la fel ca la Iterative, doar ca
+pentru calculul lui R nu vom mai folosi iteratii, ci vom calcula direct cu
+cu ajutorul operatorului \. Am folosit algoritmul PR_Inv prin care calculam
+inversa pentru a putea fi folosita in aflarea lui R. Totodata, am lasat
+comentata si o linie prin care acest lucru se face fara a mai fi nevoie
+sa fie calculata si inversa.
+
+	PR_Inv - Calculeaza inversa unei matrici cu ajutorul algoritmului
+QR - Gramm-Schmidt - si cel pentru SST.
+
+Task3
+
+	Apartenenta - Pentru a obtine valorile a si b pentru care functia
+este continua, am apelat la limite, obtinand ceea ce este calculat si in 
+algoritm. Pentru fiecare valoarea din vectorul x se va calcula y-ul
+corespunzator.
+
+	PageRank - Am obtinut val1 si val2 din fisier, dupa care am printat
+R1 obtinut prin Iterative si R2 prin Algebraic. Am ordonat vectorul PR2
+descrescator cu ajutorul functiei sort si am obtinut y-ul cu ajutorul 
+algoritmului de Apartenenta, dupa care am printat si aceste valori in fisier.

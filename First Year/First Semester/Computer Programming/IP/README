@@ -1,0 +1,31 @@
+Task 0
+	Afiseaza IP-ul 1 si MSK_2 in formatul IP_1/MSK_2.
+
+Task 1
+	M-am folosit de o functie care are in componenta ei switch ce calculeaza in functie de restul impartirii, un numar pe un octet. Cazul in care restul e 0 este precizat in int main(){}. Switchul in care este apelata aceasta functie este constituit din 4 cazuri, in functie de rest si printeaza MSK_2 in format zecimal, respectiv tine minte in anumite variabile valorile fiecarui octet.
+
+Task 2
+	Afiseaza MSK_1 in baza 8 si baza 16.
+
+Task 3
+	M-am folosit de & pentru a afisa adresa de retea a IP-ului 1 in functie de MSK_2.
+
+Task 4
+	M-am folosit de | pentru a afisa adresa de broadcast a IP-ului 1 in functie de MSK_2.
+
+Task 5
+	Pentru a verifica daca IP_1 si IP_2 fac parte din aceeasi retea in functie de MSK_2,se compara fiecare octet, folosind & intre octet si variabilele obtinute la Task-ul 1, cu cel de pe acelasi pozitie, urmand aceeasi metoda.
+
+Task 6
+	Transforma MSK_1 din 4 variabile, fiecare pe cate un octet, intr-un int pe 32 de biti, si anume in variabila NRM. Dupa aceea se verifica daca bitii acestui NRM sunt setati, pornind de la pozitia 31, pana cand se gaseste primul bit nesetat. Daca ajunge la pozitia 0 si toti bitii sunt setati, MSK_1 e valida, daca nu, se verifica daca dupa acel bit nesetat mai exista biti setati. Daca nu, MSK_1 e valida, iar in caz contrar, MSK-1 nu e valida.
+
+Task 7
+	Daca la Task-ul 6 MSK_1 e valida, o afiseaza, altfel cat timp bitii din NRM sunt setati, se formeaza un nou numar care are aceeasi biti setati. La primul bit nesetat gasit, se opreste si in restul pozitiilor ramane 0. Ne-am folosit de 4 variabile pentru a afisa noua variabila ce reprezinta MSK_1 validata.
+
+Task 8
+	Ne-am folosit de o afisare care transforma fiecare variabil a lui IP_1 in baza 2.
+
+Task 9
+	Fiecare Mask a fiecarui NET_N este transformata intr-un numar pe 32 de biti si dupa aceea tine minte in 4 variabil pe cate un octet fiecare, aceasta valoare. Urmand procedeul de la taskul 5, se verifica cu care dintre NET_N se afla in aceeasi retea de adresa IP-ul 2. 
+	
+
