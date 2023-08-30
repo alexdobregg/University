@@ -1,0 +1,32 @@
+Dobre Gigi-Alexandru 336CA - Tema 1
+
+    The following functions remain the same as the secvential implementation:
+* print_best_fitness
+* cmpfunc
+* mutate_bit_string_1
+* mutate_bit_string_2
+* crossover
+* copy_individual
+* free_generation
+    I created a structure called my_arg, like in lab 3, which is used for
+sending all the necessary parameters to the fuction of the threads.
+That function is run_genetic_algorithm. First, the start and end variables
+are calculated and used for almost every for that is related to object_count
+in order to have parallel computations. The initial generation is obtained
+and the program proceeds further with its calculation. After computing the
+fitness fuction for every indiviual in the generation, the current generation
+is sorted using the merge sort implemented in lab 3.
+    After that, the mutations and the crossover take place and the best
+fitness is printed. Then another fitness function for every individual is
+computed and the generation sorted. The best fitness is printed again and
+then the memory used is freed.
+    In addition to the functions that were already implemented, I added the
+merge function used in the merge sort.
+    compute_fitness_function has been modified to receive the start and end
+values for its for. read_input has also been modified in order to receive the
+number of cores used and to calculate the object count used in the merge. As
+for the values of start and end in the run_genetic_algorithm, they might change
+depending on the % of individuals the mutations are made on.
+    For the race problem, I've used the barrier so the computations on every 
+thread to be completed before moving to the next ones. Freeing the memory and
+printing the best fitness are only done once, on the thread_id = 0.

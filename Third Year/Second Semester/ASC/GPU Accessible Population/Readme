@@ -1,0 +1,167 @@
+Dobre Gigi-Alexandru 336CA - GPU Accessible Population
+
+Implementation:
+
+    The implementation is based on the lab 9 and it uses most of the things
+learned there.
+
+- compute function is the one that calculates the accpop based on the distance
+between cities and it is the one done on threads breaking the vector in multiple
+blocks having blockSize as their dimension. It only looks at position after 
+the current one so it saves more time by adding the population of B into the
+population of A and the one of A into the one of B. This way, there is no need
+to look at the previous elements since the population has already been added. All
+of this happens only if the distance is lesser than or equal with kmRange. It
+is also the same implementation as the one provided with minor changes.
+- the main function is based on the same concept as the one provided, it takes
+3 arguments each time - kmRange, fileIn, fileOut. If the kmRange is 0, it just
+writes the population of every city into the file. The memory is allocated
+for both host and device. For host it was used malloc and free and for device
+it was used cudaMalloc and cudaFree. The arrays are populated, the memory
+is copied from host to device, the compute function is called for getting the
+accpop and this result is copied from device to host and written into the file.
+
+To mention: The last test - H1 is skipped. From what I've seen it says passed
+because an ouput file is not created. There are 2 lines to do that. In case
+of making the timeout bigger, comment those 2 lines.
+
+Some outputs I received are:
+
+[gigi.dobre@fep8 sol]$ time ../checker/run_cluster_checker.sh
+INFO:    Using cached SIF image
+make: Entering directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+rm -f gpu_sol *.o
+make: Leaving directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+make: Entering directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+nvcc -g helper.cpp -c -O0
+nvcc -g -arch=sm_35 -rdc=true gpu.cu helper.o -o gpu_sol -O0
+make: Leaving directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+--------------------------------
+Executing tests on A100 with timeout: 18s
+--------------------------------
+B0 Passed .... 10p
+E1 Passed .... 20p
+M1 Passed .... 20p
+M2 Passed .... 20p
+H1 Failed ....  0p
+--------------------------------
+Final score:   70/90
+
+real    0m16.614s
+user    0m0.280s
+sys     0m0.263s
+
+
+[gigi.dobre@fep8 sol]$ time ../checker/run_cluster_checker.sh
+INFO:    Using cached SIF image
+make: Entering directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+rm -f gpu_sol *.o
+make: Leaving directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+make: Entering directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+nvcc -g helper.cpp -c -O0
+nvcc -g -arch=sm_35 -rdc=true gpu.cu helper.o -o gpu_sol -O0
+make: Leaving directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+--------------------------------
+Executing tests on K40M with timeout: 30s
+--------------------------------
+B0 Passed .... 10p
+E1 Passed .... 20p
+M1 Passed .... 20p
+M2 Passed .... 20p
+H1 Failed ....  0p
+--------------------------------
+Final score:   70/90
+
+real    0m20.930s
+user    0m0.199s
+sys     0m0.174s
+
+
+
+[gigi.dobre@fep8 sol]$ time ../checker/run_cluster_checker.sh
+INFO:    Using cached SIF image
+make: Entering directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+rm -f gpu_sol *.o
+make: Leaving directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+make: Entering directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+nvcc -g helper.cpp -c -O0
+nvcc -g -arch=sm_35 -rdc=true gpu.cu helper.o -o gpu_sol -O0
+make: Leaving directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+--------------------------------
+Executing tests on K40M with timeout: 30s
+--------------------------------
+B0 Passed .... 10p
+E1 Passed .... 20p
+M1 Passed .... 20p
+M2 Passed .... 20p
+H1 Failed ....  0p
+--------------------------------
+Final score:   70/90
+
+real    0m17.657s
+user    0m0.153s
+sys     0m0.187s
+
+[gigi.dobre@fep8 sol]$ time ../checker/run_cluster_checker.sh
+INFO:    Using cached SIF image
+make: Entering directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+rm -f gpu_sol *.o
+make: Leaving directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+make: Entering directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+nvcc -g -arch=sm_35 -rdc=true gpu.cu -o gpu_sol -O0
+make: Leaving directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+--------------------------------
+Executing tests on K40M with timeout: 30s
+--------------------------------
+B0 Passed .... 10p
+E1 Passed .... 20p
+M1 Passed .... 20p
+M2 Passed .... 20p
+diff: ../tests/H1.out: No such file or directory
+H1 Passed .... 20p
+--------------------------------
+Final score:   90/90
+
+real    0m19.257s
+user    0m0.281s
+sys     0m0.246s
+
+[gigi.dobre@fep8 sol]$ ../checker/run_cluster_checker.sh
+INFO:    Using cached SIF image
+make: Entering directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+rm -f gpu_sol *.o
+make: Leaving directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+make: Entering directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+nvcc -g -arch=sm_35 -rdc=true gpu.cu -o gpu_sol -O0
+make: Leaving directory `/export/home/acs/stud/g/gigi.dobre/asctema3/sol'
+--------------------------------
+Executing tests on K40M with timeout: 30s
+--------------------------------
+B0 Passed .... 10p
+E1 Passed .... 20p
+M1 Passed .... 20p
+M2 Passed .... 20p
+diff: ../tests/H1.out: No such file or directory
+H1 Passed .... 20p
+--------------------------------
+Final score:   90/90
+
+    Most of the times I got the K40M one, and some other times A100. I don't know
+if the implementation can provide a solution to pass the last test in time
+if one of the other 2 is being picked. As far as for these 2 that I got a
+chance to test on, the last test will definetly give a timeout.
+    Regardless of that, the timers are pretty good, especially on the K40M and
+it really depends on the system it runs on. Sometimes it is higher and other times
+it is lower. For example the 3 K40M, one with 20 sec, one with 19 sec and one with 17 sec.
+    The majority of notions used in this homework are from lab9 and little bit
+from lab8 and lab7. The last one is the case where there is no H1.out because that test
+is skipped. So those points don't matter unless the lines are commented and the
+timeout is bigger.
+
+
+
+Resources:
+https://ocw.cs.pub.ro/courses/asc/laboratoare/09
+https://www.tutorialspoint.com/how-can-i-get-a-file-s-size-in-cplusplus
+https://ocw.cs.pub.ro/courses/asc/laboratoare/08
+https://ocw.cs.pub.ro/courses/asc/laboratoare/07

@@ -1,0 +1,29 @@
+Tema 3 APD - Dobre Gigi-Alexandru
+
+open_read
+    * opens the file and reads the information according to the coordinator
+    given as a parameter. It returns the workers array.
+
+printing
+    * prints at stdout the complete topology
+
+sendToWorker
+    * sends the topology from a coordinator to his workers.
+
+rel01
+    * this is divided in 4 ifs - for rank0, rank1, rank2 which are coordinators,
+    and for the workers. In the ones for the coordinators, they open their file,
+    read the number of workers and the workers and send their topology between 
+    each other. After receiving it, they print it and then send it to their
+    workers.
+    * in addition to this, which is common for all 3 of them, the first one
+    will create the vector which has the values equal to the positions. This 
+    vector is being sent to the other 2 coordinators and a subvector is sent to his
+    workers. Both of them are going to receive it and send it to their workers.
+    * these 2 coordinators will receive the modified vector from their workers,
+    and will send it to coordinator 0. The rank0 will also receive modified
+    vectors from his workers, then he will compute the final one and print it.
+    * the other ranks - they will receive the rank that is their coordinator first.
+    After, they will receive the topology and print it. Then they will receive 
+    the subvector and its dimension in order to double the values. At last,
+    they are sending it to their coordinator.
