@@ -1,0 +1,103 @@
+Requests handled by h0: 150
+Lowest time of h0: 0.070464s
+Highest time of h0: 0.999822s
+Average time of h0: 0.42934317333333333s
+
+Requests handled by h1: 150
+Lowest time of h1: 0.005434s
+Highest time of h1: 0.997803s
+Average time of h1: 0.28136503333333335s
+
+Requests handled by h2: 150
+Lowest time of h2: 0.107963s
+Highest time of h2: 0.733419s
+Average time of h2: 0.20129100666666674s
+
+Requests handled by h3: 150
+Lowest time of h3: 0.211293s
+Highest time of h3: 0.80613s
+Average time of h3: 0.24548508666666655s
+
+Requests handled by h4: 150
+Lowest time of h4: 0.080681s
+Highest time of h4: 0.932072s
+Average time of h4: 0.20283619333333328s
+
+Requests handled by h5: 150
+Lowest time of h5: 0.094395s
+Highest time of h5: 0.684473s
+Average time of h5: 0.29202876666666655s
+
+
+
+
+
+
+
+Requests handled by h0: 82
+Lowest time of h0: 0.11105s
+Highest time of h0: 0.348891s
+Average time of h0: 0.19239574390243902s
+
+Requests handled by h1: 82
+Lowest time of h1: 0.099368s
+Highest time of h1: 0.641333s
+Average time of h1: 0.31580729268292684s
+
+Requests handled by h2: 246
+Lowest time of h2: 0.095792s
+Highest time of h2: 0.879346s
+Average time of h2: 0.34235152032520333s
+
+Requests handled by h3: 82
+Lowest time of h3: 0.188433s
+Highest time of h3: 0.847509s
+Average time of h3: 0.4115814024390244s
+
+Requests handled by h4: 164
+Lowest time of h4: 0.070118s
+Highest time of h4: 0.641314s
+Average time of h4: 0.2428518048780489s
+
+Requests handled by h5: 244
+Lowest time of h5: 0.013506s
+Highest time of h5: 0.886124s
+Average time of h5: 0.3113561024590164s
+
+
+
+
+
+
+
+
+
+Requests handled by h0: 157
+Lowest time of h0: 0.006878s
+Highest time of h0: 0.993129s
+Average time of h0: 0.45397168152866246s
+
+Requests handled by h1: 143
+Lowest time of h1: 0.018278s
+Highest time of h1: 0.935632s
+Average time of h1: 0.45578954545454564s
+
+Requests handled by h2: 154
+Lowest time of h2: 0.124868s
+Highest time of h2: 0.732906s
+Average time of h2: 0.21059752597402587s
+
+Requests handled by h3: 146
+Lowest time of h3: 0.211394s
+Highest time of h3: 0.953767s
+Average time of h3: 0.2609293561643836s
+
+Requests handled by h4: 149
+Lowest time of h4: 0.134945s
+Highest time of h4: 0.800216s
+Average time of h4: 0.1828662281879194s
+
+Requests handled by h5: 151
+Lowest time of h5: 0.151206s
+Highest time of h5: 0.540437s
+Average time of h5: 0.17789853642384099s
